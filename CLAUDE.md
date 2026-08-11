@@ -32,9 +32,27 @@ plain text are fine.
 6. **Ship phase by phase.** Each phase ends deployed and testable.
 7. **Do not touch Leafs Legend v1.**
 
-Phase status: **Phase 1 (scaffold + port + parameterize) built.** Phases 2–6
-(accounts, stats, leaderboards, custom domain/SEO, monetization, 1v1) are NOT
-built yet — see BUILD_PLAN.md and check in before starting each.
+Phase status: **Phases 1–2 built.** Phase 1 = scaffold + port + parameterize.
+Phase 2 = optional accounts + personal stats (Supabase, Google + magic-link),
+non-intrusive and **dormant until Supabase env vars are set** — see below.
+Phases 3–6 (leaderboards, custom domain/SEO + Leafs Legend cutover, monetization,
+1v1) are NOT built yet — see BUILD_PLAN.md and check in before starting each.
+
+### Phase 2 — accounts + stats (Supabase)
+- Optional sign-in only; **guest play is never gated** (principle 1). With no
+  `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`, the whole layer is
+  inert and the app is byte-for-byte the Phase 1 guest build. The guard is
+  `isSupabaseConfigured()` in `web/app/lib/supabase/config.ts`.
+- Auth: Google OAuth + passwordless magic link, via `@supabase/ssr`
+  (`web/app/lib/supabase/{client,server}.ts`, `web/middleware.ts`,
+  `web/app/auth/callback/route.ts`, context in `web/app/lib/auth.tsx`).
+- Persistence: `web/app/lib/stats.ts`. On run end, signed-in players log a `runs`
+  row + upsert `best_streaks`; guests keep localStorage. First sign-in offers to
+  import local bests. Profile page at `web/app/me/`.
+- Schema + RLS: `supabase/schema.sql` (owner-only). Setup: `docs/supabase_setup.md`.
+- Stats are **client-reported** (fine for personal). Public/competitive
+  leaderboards + server-authoritative validation are Phase 3 — do NOT make these
+  tables public-readable before then.
 
 ## Stack
 - Web: Next.js (App Router) + React + TypeScript + Tailwind. Static / client-side.

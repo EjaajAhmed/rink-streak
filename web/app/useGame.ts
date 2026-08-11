@@ -12,6 +12,15 @@ import {
 import { makeSequencer, type Sequencer } from "./lib/sequence";
 import { randomSeed } from "./lib/rng";
 import { HARDCORE_SECONDS } from "./lib/config";
+import { useAuth } from "./lib/auth";
+import { getBrowserSupabase } from "./lib/supabase/client";
+import {
+  fetchBests,
+  importLocalBests,
+  recordRun,
+  upsertBest,
+  type BestMap,
+} from "./lib/stats";
 
 export type Status = "loading" | "error" | "ready" | "playing" | "over";
 
@@ -29,6 +38,7 @@ const PREFIX = "rinkstreak.best.";
 const storeKey = (k: string) => `${PREFIX}${k}`;
 
 export function useGame(teamCode: string) {
+  const { user } = useAuth();
   const [players, setPlayers] = useState<Player[]>([]);
   const [status, setStatus] = useState<Status>("loading");
   const [mode, setMode] = useState<Mode>("casual");
@@ -38,8 +48,11 @@ export function useGame(teamCode: string) {
   const [best, setBest] = useState<Record<string, number>>({});
   const [result, setResult] = useState<RunResult | null>(null);
   const [timeLeft, setTimeLeft] = useState(HARDCORE_SECONDS);
+  const [importable, setImportable] = useState(0); // local bests not yet synced
 
   const seq = useRef<Sequencer | null>(null);
+  const runSeed = useRef<number>(0); // seed of the in-progress run (for logging)
+  const localBests = useRef<BestMap>({}); // snapshot of localStorage bests at mount
 
   const eras = useMemo(() => buildEras(players), [players]);
   const era: Era = useMemo(
@@ -80,11 +93,40 @@ export function useGame(teamCode: string) {
         if (!k || !k.startsWith(PREFIX)) continue;
         map[k.slice(PREFIX.length)] = Number(localStorage.getItem(k) || 0);
       }
+      localBests.current = map;
       setBest(map);
     } catch {
       /* localStorage unavailable — bests stay empty */
     }
   }, []);
+
+  // On sign-in, merge the account's saved bests in (take the higher of the two)
+  // and figure out whether any local bests still need importing.
+  useEffect(() => {
+    const sb = getBrowserSupabase();
+    if (!user || !sb) {
+      setImportable(0);
+      return;
+    }
+    let alive = true;
+    fetchBests(sb, user.id).then((server) => {
+      if (!alive) return;
+      setBest((prev) => {
+        const merged = { ...prev };
+        for (const [k, v] of Object.entries(server)) {
+          merged[k] = Math.max(merged[k] ?? 0, v);
+        }
+        return merged;
+      });
+      const pending = Object.entries(localBests.current).filter(
+        ([k, v]) => v > (server[k] ?? 0),
+      ).length;
+      setImportable(pending);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [user]);
 
   const advance = useCallback(() => {
     const p = seq.current?.next() ?? null;
@@ -94,7 +136,8 @@ export function useGame(teamCode: string) {
 
   const start = useCallback(() => {
     if (pool.length === 0) return;
-    seq.current = makeSequencer(pool, teamCode, randomSeed());
+    runSeed.current = randomSeed();
+    seq.current = makeSequencer(pool, teamCode, runSeed.current);
     setStreak(0);
     setResult(null);
     setStatus("playing");
@@ -109,18 +152,39 @@ export function useGame(teamCode: string) {
         return cur;
       });
       setStatus("over");
+
+      const key = bestKey(teamCode, mode, eraId);
+      let isNewBest = false;
       setBest((prev) => {
-        const key = bestKey(teamCode, mode, eraId);
         if (streak <= (prev[key] ?? 0)) return prev;
+        isNewBest = true;
         try {
           localStorage.setItem(storeKey(key), String(streak));
+          localBests.current[key] = streak;
         } catch {
           /* ignore */
         }
         return { ...prev, [key]: streak };
       });
+
+      // Cloud write-through for signed-in players (fire-and-forget). Every run
+      // is logged; a new best is upserted. Guests hit neither branch.
+      const sb = getBrowserSupabase();
+      if (user && sb) {
+        recordRun(sb, user.id, {
+          team_code: teamCode,
+          mode,
+          era_id: eraId,
+          seed: runSeed.current || null,
+          streak,
+          ended_reason: reason,
+        }).catch(() => {});
+        if (isNewBest) {
+          upsertBest(sb, user.id, teamCode, mode, eraId, streak).catch(() => {});
+        }
+      }
     },
-    [teamCode, mode, eraId, streak],
+    [teamCode, mode, eraId, streak, user],
   );
 
   const timeoutRef = useRef<() => void>(() => {});
@@ -160,6 +224,15 @@ export function useGame(teamCode: string) {
   const chooseMode = useCallback((m: Mode) => setMode(m), []);
   const chooseEra = useCallback((id: string) => setEraId(id), []);
 
+  // Import local best streaks into the signed-in account (idempotent MAX).
+  const importLocal = useCallback(async () => {
+    const sb = getBrowserSupabase();
+    if (!user || !sb) return;
+    await importLocalBests(sb, user.id, localBests.current);
+    setImportable(0);
+  }, [user]);
+  const dismissImport = useCallback(() => setImportable(0), []);
+
   return {
     status,
     mode,
@@ -177,5 +250,8 @@ export function useGame(teamCode: string) {
     answer,
     chooseMode,
     chooseEra,
+    importable,
+    importLocal,
+    dismissImport,
   };
 }

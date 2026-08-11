@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGame } from "../useGame";
 import { TEAMS } from "../lib/teams";
 import { SITE_NAME, HARDCORE_SECONDS } from "../lib/config";
+import AuthWidget from "../components/AuthWidget";
 import {
   positionName,
   revealLine,
@@ -67,6 +68,13 @@ export default function Game({ teamCode }: { teamCode: string }) {
                   era={eraShort(g.eraId, g.era.label)}
                 />
               )}
+              {g.importable > 0 && (
+                <ImportPrompt
+                  count={g.importable}
+                  onImport={g.importLocal}
+                  onDismiss={g.dismissImport}
+                />
+              )}
               <StartPanel g={g} teamShort={team.short} />
             </>
           )}
@@ -107,7 +115,10 @@ function Header({
         <Link href="/" prefetch={false} className="hover:text-team">
           ← all teams
         </Link>
-        <span>{SITE_NAME}</span>
+        <div className="flex items-center gap-3">
+          <span>{SITE_NAME}</span>
+          <AuthWidget />
+        </div>
       </div>
       <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full crest">
         <span className="text-sm font-bold leading-none">{teamCode}</span>
@@ -361,6 +372,36 @@ function GameOver({
         <span className="numeral text-xl font-bold text-ink">{streak}</span> ·{" "}
         {mode} · {era}
       </p>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------- import prompt */
+function ImportPrompt({
+  count,
+  onImport,
+  onDismiss,
+}: {
+  count: number;
+  onImport: () => void;
+  onDismiss: () => void;
+}) {
+  return (
+    <div className="mb-5 flex items-center gap-3 rounded-xl border border-team/30 bg-white/70 p-3 text-left">
+      <p className="flex-1 text-xs text-ink-soft">
+        You have <strong className="text-ink">{count}</strong> local best
+        streak{count === 1 ? "" : "s"} not saved to your account.
+      </p>
+      <button onClick={onImport} className="pill pill-active">
+        Import
+      </button>
+      <button
+        onClick={onDismiss}
+        aria-label="Dismiss"
+        className="text-ink-soft hover:text-ink"
+      >
+        ×
+      </button>
     </div>
   );
 }

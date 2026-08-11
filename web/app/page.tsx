@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TEAMS, TEAM_CODES, themeVars } from "./lib/teams";
 import { SITE_NAME, SITE_TAGLINE } from "./lib/config";
+import AuthWidget from "./components/AuthWidget";
 
 // Grouping for the landing grid (division order, like the teams.ts comments).
 const DIVISIONS: { name: string; codes: string[] }[] = [
@@ -13,7 +14,10 @@ const DIVISIONS: { name: string; codes: string[] }[] = [
 export default function Landing() {
   return (
     <main className="mx-auto flex min-h-screen max-w-4xl flex-col px-4 pb-14">
-      <header className="pt-10 text-center sm:pt-14">
+      <div className="flex justify-end pt-4">
+        <AuthWidget />
+      </div>
+      <header className="pt-6 text-center sm:pt-8">
         <h1 className="block text-4xl leading-none text-ink sm:text-6xl">
           {SITE_NAME}
         </h1>
