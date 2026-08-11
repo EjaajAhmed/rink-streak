@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f7f3ea;
+  --rink: #ece6d8;
+  --ink: #16202e;
+  --ink-soft: #5b6675;
+  --penalty: #a5262c;
+  --gold: #c69b3f;
+
+  /* Team theme — overridden per-page via themeVars() (lib/teams.ts).
+     Fallbacks keep an unthemed page (e.g. the landing grid) looking sane. */
+  --team-primary: #16202e;
+  --team-secondary: #c69b3f;
+  --team-text: #ffffff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(120% 80% at 50% -10%, color-mix(in srgb, var(--team-primary) 16%, transparent), transparent 60%),
+    radial-gradient(100% 60% at 50% 120%, color-mix(in srgb, var(--team-primary) 10%, transparent), transparent 60%),
+    var(--rink);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Jersey block lettering */
+.block {
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Sweater hem: team band with cream pinstripes around a thin accent line */
+.hem {
+  height: 14px;
+  background:
+    linear-gradient(var(--team-secondary), var(--team-secondary)) center / 100% 2px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)) top 3px left / 100% 2px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)) bottom 3px left / 100% 2px no-repeat,
+    var(--team-primary);
+}
+
+/* Laced-collar dashed divider */
+.laces {
+  border-top: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+/* Raised enamel scoreboard sign */
+.enamel {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--team-primary) 82%, white), var(--team-primary));
+  color: var(--team-text);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.32),
+    0 6px 0 color-mix(in srgb, var(--team-primary) 55%, black),
+    0 10px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Vintage paper card */
+.card {
+  background: var(--paper);
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 22px 48px -22px color-mix(in srgb, var(--team-primary) 50%, transparent);
+}
+
+/* Round sweater crest / patch */
+.crest {
+  background: radial-gradient(circle at 50% 34%, color-mix(in srgb, var(--team-primary) 82%, white), var(--team-primary) 72%);
+  color: var(--team-text);
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 3px var(--team-primary), 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Period clock */
+.clock-track {
+  background: color-mix(in srgb, var(--team-primary) 12%, transparent);
+  border: 2px solid var(--team-primary);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.clock-fill {
+  height: 100%;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--team-primary) 70%, white), var(--team-primary));
+  transition: width 0.1s linear;
+}
+.clock-fill.warn {
+  background: linear-gradient(90deg, #c0392b, var(--penalty));
+}
+
+@keyframes tick-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+.tick-warn {
+  color: var(--penalty);
+  animation: tick-pulse 1s ease-in-out infinite;
+}
+
+/* Big answer buttons */
+.btn-answer {
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.06s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.btn-answer:active {
+  transform: translateY(2px);
+}
+.btn-yes {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--team-primary) 84%, white), var(--team-primary));
+  color: var(--team-text);
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--team-primary) 55%, black), 0 10px 16px rgba(0, 0, 0, 0.2);
+}
+.btn-yes:hover {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--team-primary) 92%, white), color-mix(in srgb, var(--team-primary) 96%, white));
+}
+.btn-no {
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--team-primary);
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--ink) 22%, transparent), 0 10px 16px rgba(0, 0, 0, 0.12);
+}
+.btn-no:hover {
+  background: #fff;
+}
+
+/* Collapsible (how to play) */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+.howto-mark {
+  display: inline-block;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+details[open] .howto-mark {
+  transform: rotate(45deg);
+}
+
+/* Small pill controls */
+.pill {
+  border: 2px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.12s ease;
+  color: var(--ink);
+}
+.pill:hover {
+  border-color: var(--team-primary);
+}
+.pill-active {
+  background: var(--team-primary);
+  color: var(--team-text);
+  border-color: var(--team-primary);
+}
+
+/* Landing-grid team tile: a coloured sweater swatch per team */
+.team-tile {
+  background: var(--team-primary);
+  color: var(--team-text);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.55);
+  transition: transform 0.1s ease, box-shadow 0.12s ease;
+}
+.team-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -14px rgba(0, 0, 0, 0.6);
+}
+.team-tile .tile-accent {
+  background: var(--team-secondary);
+}
