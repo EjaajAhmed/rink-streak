@@ -6,7 +6,7 @@ import { useAuth } from "../lib/auth";
 // Lightweight sign-in popover — Google OAuth + magic-link email. Not a
 // full-screen modal: it drops down from the AuthWidget and is dismissible.
 export default function SignInPanel({ onClose }: { onClose: () => void }) {
-  const { signInWithGoogle, signInWithEmail } = useAuth();
+  const { signInWithGoogle, signInWithEmail, googleEnabled } = useAuth();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
@@ -43,16 +43,20 @@ export default function SignInPanel({ onClose }: { onClose: () => void }) {
         guest.
       </p>
 
-      <button
-        onClick={signInWithGoogle}
-        className="btn-answer btn-no w-full text-sm"
-      >
-        Continue with Google
-      </button>
-
-      <div className="my-3 flex items-center gap-2 text-[0.65rem] uppercase tracking-widest text-ink-soft/70">
-        <span className="h-px flex-1 bg-ink/15" /> or <span className="h-px flex-1 bg-ink/15" />
-      </div>
+      {googleEnabled && (
+        <>
+          <button
+            onClick={signInWithGoogle}
+            className="btn-answer btn-no w-full text-sm"
+          >
+            Continue with Google
+          </button>
+          <div className="my-3 flex items-center gap-2 text-[0.65rem] uppercase tracking-widest text-ink-soft/70">
+            <span className="h-px flex-1 bg-ink/15" /> or{" "}
+            <span className="h-px flex-1 bg-ink/15" />
+          </div>
+        </>
+      )}
 
       {status === "sent" ? (
         <p className="text-xs font-semibold text-ink">

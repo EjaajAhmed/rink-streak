@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth } from "../lib/auth";
 import { getBrowserSupabase } from "../lib/supabase/client";
-import { TEAMS, TEAM_CODES } from "../lib/teams";
+import { TEAMS } from "../lib/teams";
 import { SITE_NAME } from "../lib/config";
 import AuthWidget from "../components/AuthWidget";
 import {
@@ -49,6 +49,10 @@ export default function ProfilePage() {
     setSavedNote("Saved");
     setTimeout(() => setSavedNote(""), 1500);
   };
+
+  // Favourite team is derived, not chosen: the team you've streaked highest on.
+  // perTeam is pre-sorted by best desc, so the first with a real streak wins.
+  const favourite = stats?.perTeam.find((t) => t.best > 0) ?? null;
 
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col px-4 pb-12">
@@ -97,18 +101,21 @@ export default function ProfilePage() {
             <label className="mb-1 mt-4 block text-xs tracking-widest text-ink-soft">
               Favourite team
             </label>
-            <select
-              value={profile.favourite_team ?? ""}
-              onChange={(e) => save({ favourite_team: e.target.value || null })}
-              className="w-full rounded-lg border-2 border-ink/20 bg-white/70 px-3 py-2 text-sm text-ink outline-none focus:border-team"
-            >
-              <option value="">— none —</option>
-              {TEAM_CODES.map((code) => (
-                <option key={code} value={code}>
-                  {TEAMS[code].name}
-                </option>
-              ))}
-            </select>
+            <div className="rounded-lg border-2 border-dashed border-ink/20 bg-white/40 px-3 py-2 text-sm text-ink">
+              {favourite ? (
+                <>
+                  <span className="font-bold">{TEAMS[favourite.teamCode]?.name ?? favourite.teamCode}</span>
+                  <span className="text-ink-soft">
+                    {" "}— your best streak ({favourite.best})
+                  </span>
+                </>
+              ) : (
+                <span className="text-ink-soft">
+                  Play a few games — whichever team you streak highest on becomes
+                  your favourite.
+                </span>
+              )}
+            </div>
             {savedNote && (
               <p className="mt-2 text-xs font-semibold text-team">{savedNote}</p>
             )}

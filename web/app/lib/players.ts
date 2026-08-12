@@ -81,9 +81,21 @@ export function decadeList(players: Player[]): string[] {
   return [...seen].sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
 }
 
-/** Era pills: "All", one "Pre-1970" bucket, then a pill per decade from 1970s. */
-export function buildEras(players: Player[]): Era[] {
-  const decades = decadeList(players);
+/** Decades in which the TEAM itself existed — i.e. decades any player played
+ *  *for* this team. This is what an expansion team's era pills come from, so
+ *  Vegas (2010s+) never offers a "1980s" filter it was never around for. */
+export function teamDecadeList(players: Player[], teamCode: string): string[] {
+  const seen = new Set<string>();
+  for (const p of players) {
+    for (const d of p.teamDecades[teamCode] ?? []) seen.add(d);
+  }
+  return [...seen].sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+}
+
+/** Era pills for a team: "All", one "Pre-1970" bucket, then a pill per decade
+ *  from the 1970s — limited to decades the team actually existed for. */
+export function buildEras(players: Player[], teamCode: string): Era[] {
+  const decades = teamDecadeList(players, teamCode);
   const pre = decades.filter((d) => parseInt(d, 10) < PRE_EXPANSION_BEFORE);
   const modern = decades.filter((d) => parseInt(d, 10) >= PRE_EXPANSION_BEFORE);
   const eras: Era[] = [{ id: "all", label: "All eras", decades: null }];

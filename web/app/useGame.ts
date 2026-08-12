@@ -54,7 +54,7 @@ export function useGame(teamCode: string) {
   const runSeed = useRef<number>(0); // seed of the in-progress run (for logging)
   const localBests = useRef<BestMap>({}); // snapshot of localStorage bests at mount
 
-  const eras = useMemo(() => buildEras(players), [players]);
+  const eras = useMemo(() => buildEras(players, teamCode), [players, teamCode]);
   const era: Era = useMemo(
     () => eras.find((e) => e.id === eraId) ?? eras[0],
     [eras, eraId],

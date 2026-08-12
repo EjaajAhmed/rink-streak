@@ -10,6 +10,7 @@ import {
 } from "react";
 import type { User } from "@supabase/supabase-js";
 import { getBrowserSupabase } from "./supabase/client";
+import { SUPABASE_ANON_KEY, SUPABASE_URL } from "./supabase/config";
 
 type EmailResult = { ok: boolean; error?: string };
 
@@ -17,6 +18,7 @@ type AuthState = {
   configured: boolean;
   loading: boolean;
   user: User | null;
+  googleEnabled: boolean; // Google provider actually turned on in Supabase
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<EmailResult>;
   signOut: () => Promise<void>;
@@ -27,6 +29,7 @@ const DEFAULT: AuthState = {
   configured: false,
   loading: false,
   user: null,
+  googleEnabled: false,
   signInWithGoogle: noop,
   signInWithEmail: async () => ({ ok: false, error: "Sign-in is not enabled." }),
   signOut: noop,
@@ -47,6 +50,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const configured = supabase !== null;
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(configured);
+  const [googleEnabled, setGoogleEnabled] = useState(false);
+
+  // Ask the project which providers are on, so the UI only offers Google once
+  // it's actually enabled (avoids a "Continue with Google" button that errors).
+  useEffect(() => {
+    if (!configured) return;
+    let alive = true;
+    fetch(`${SUPABASE_URL}/auth/v1/settings`, {
+      headers: { apikey: SUPABASE_ANON_KEY },
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((s) => {
+        if (alive && s?.external?.google) setGoogleEnabled(true);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [configured]);
 
   useEffect(() => {
     if (!supabase) return;
@@ -98,11 +120,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       configured,
       loading,
       user,
+      googleEnabled,
       signInWithGoogle,
       signInWithEmail,
       signOut,
     }),
-    [configured, loading, user, signInWithGoogle, signInWithEmail, signOut],
+    [
+      configured,
+      loading,
+      user,
+      googleEnabled,
+      signInWithGoogle,
+      signInWithEmail,
+      signOut,
+    ],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
