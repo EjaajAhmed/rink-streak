@@ -6,6 +6,7 @@ import { useGame } from "../useGame";
 import { TEAMS } from "../lib/teams";
 import { HARDCORE_SECONDS } from "../lib/config";
 import AuthWidget from "../components/AuthWidget";
+import SupportLink from "../components/SupportLink";
 import {
   positionName,
   revealLine,
@@ -444,6 +445,7 @@ function Footer({ teamName }: { teamName: string }) {
     <footer className="mt-8 text-center text-[0.7rem] uppercase tracking-widest text-ink-soft/60">
       Fan project · not affiliated with the NHL or the {teamName} · data: NHL API
       + Hockey Databank
+      <SupportLink />
     </footer>
   );
 }

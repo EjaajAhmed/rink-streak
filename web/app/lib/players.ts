@@ -165,6 +165,7 @@ const POSITIONS: Record<string, string> = {
   R: "Right Wing",
   D: "Defence",
   G: "Goaltender",
+  F: "Forward", // some older records only specify "forward"
 };
 
 export function positionName(code: string): string {

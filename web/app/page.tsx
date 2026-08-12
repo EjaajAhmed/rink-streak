@@ -2,6 +2,7 @@ import { TEAM_CODES } from "./lib/teams";
 import { SITE_NAME } from "./lib/config";
 import AuthWidget from "./components/AuthWidget";
 import TeamBrowser from "./components/TeamBrowser";
+import SupportLink from "./components/SupportLink";
 
 export default function Landing() {
   return (
@@ -53,6 +54,7 @@ export default function Landing() {
         <p className="mt-12 text-center text-[0.7rem] uppercase tracking-widest text-ink-soft/70">
           Fan project · not affiliated with the NHL · data: NHL API + Hockey
           Databank
+          <SupportLink />
         </p>
       </section>
     </main>

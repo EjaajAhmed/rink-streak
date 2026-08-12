@@ -4,6 +4,11 @@
 export const SITE_NAME = "didtheyhockey";
 export const SITE_TAGLINE = "Are you a true fan?";
 
+// Optional "support the site" link (donations). Leave empty to hide it entirely.
+// Set to your Ko-fi / Buy Me a Coffee / GitHub Sponsors / PayPal.me URL.
+export const SUPPORT_URL = "";
+export const SUPPORT_LABEL = "Support the site";
+
 // Casual = "more popular players": a substantial career OR currently active
 // (current players count regardless of games, since they're recognizable now).
 export const CASUAL_MIN_GP = 500;
