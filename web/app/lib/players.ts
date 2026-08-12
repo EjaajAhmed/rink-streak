@@ -117,17 +117,44 @@ export function teamDecadeList(players: Player[], teamCode: string): string[] {
   return [...seen].sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
 }
 
-/** Era pills for a team: "All", one "Pre-1970" bucket, then a pill per decade
- *  from the 1970s — limited to decades the team actually existed for. */
+/**
+ * Era pills for a team, limited to decades it actually existed for.
+ *  - Original Six (genuine pre-expansion history, i.e. any decade before the
+ *    1960s) get a single "Pre-1970" bucket for their sparse early decades.
+ *  - 1967-expansion teams (earliest decade is the 1960s — just the 1967-68 and
+ *    1968-69 seasons) don't get a lonely pre-1970 bucket; those two seasons fold
+ *    into the "1970s" pill instead.
+ *  - Later teams just get a pill per decade.
+ */
 export function buildEras(players: Player[], teamCode: string): Era[] {
-  const decades = teamDecadeList(players, teamCode);
-  const pre = decades.filter((d) => parseInt(d, 10) < PRE_EXPANSION_BEFORE);
-  const modern = decades.filter((d) => parseInt(d, 10) >= PRE_EXPANSION_BEFORE);
+  const decades = teamDecadeList(players, teamCode); // ascending
+  const year = (d: string) => parseInt(d, 10);
   const eras: Era[] = [{ id: "all", label: "All eras", decades: null }];
-  if (pre.length) {
+
+  if (decades.some((d) => year(d) < 1960)) {
+    const pre = decades.filter((d) => year(d) < PRE_EXPANSION_BEFORE);
     eras.push({ id: "pre1970", label: "Pre-1970", decades: pre });
+    for (const d of decades) if (year(d) >= PRE_EXPANSION_BEFORE) {
+      eras.push({ id: d, label: d, decades: [d] });
+    }
+    return eras;
   }
-  for (const d of modern) eras.push({ id: d, label: d, decades: [d] });
+
+  const has60 = decades.includes("1960s");
+  const has70 = decades.includes("1970s");
+  // A 1960s-born team without a 1970s pill is not a real case today, but keep
+  // the decade reachable if it ever happens.
+  if (has60 && !has70) {
+    eras.push({ id: "1960s", label: "1960s", decades: ["1960s"] });
+  }
+  for (const d of decades) {
+    if (d === "1960s") continue; // folded into the 1970s pill below
+    if (d === "1970s") {
+      eras.push({ id: "1970s", label: "1970s", decades: has60 ? ["1960s", "1970s"] : ["1970s"] });
+    } else if (year(d) >= PRE_EXPANSION_BEFORE) {
+      eras.push({ id: d, label: d, decades: [d] });
+    }
+  }
   return eras;
 }
 
