@@ -2,6 +2,7 @@
 // Shape mirrors web/public/players.json (built by etl/build_players.py).
 
 import {
+  CASUAL_MIN_GP,
   HARDCORE_TEAM_MAX_GP,
   HARDCORE_MIN_TEAMS,
 } from "./config";
@@ -17,6 +18,7 @@ export type Player = {
   careerGP: number;
   teamCount: number; // distinct clubs incl. relocated/defunct (well-travelled metric)
   iconic: boolean;
+  active: boolean; // played in the dataset's most recent season
 };
 
 export type Mode = "casual" | "hardcore";
@@ -61,6 +63,12 @@ export function isHardcoreEligible(p: Player, teamCode: string): boolean {
   return p.teamCount > HARDCORE_MIN_TEAMS && !p.iconic;
 }
 
+/** Casual = popular players only: a real career (>= CASUAL_MIN_GP games) or a
+ *  currently active player (recognizable now, even below the threshold). */
+export function isCasualEligible(p: Player): boolean {
+  return p.careerGP >= CASUAL_MIN_GP || p.active;
+}
+
 export function buildPool(
   players: Player[],
   teamCode: string,
@@ -68,8 +76,25 @@ export function buildPool(
   decades: string[] | null,
 ): Player[] {
   return players.filter((p) => {
-    if (decades && !p.decadesActive.some((d) => decades.includes(d))) return false;
-    if (mode === "hardcore" && !isHardcoreEligible(p, teamCode)) return false;
+    // Era filter. When a decade is selected we require the *right* kind of
+    // in-decade involvement, so there are no confusing entries:
+    //  - a player who played for this team must have played for it IN the
+    //    selected decade (not just been active elsewhere then);
+    //  - a player who never played for this team must merely be active in it.
+    if (decades) {
+      if (playedForTeam(p, teamCode)) {
+        const td = p.teamDecades[teamCode] ?? [];
+        if (!td.some((d) => decades.includes(d))) return false;
+      } else if (!p.decadesActive.some((d) => decades.includes(d))) {
+        return false;
+      }
+    }
+
+    if (mode === "hardcore") {
+      if (!isHardcoreEligible(p, teamCode)) return false;
+    } else if (!isCasualEligible(p)) {
+      return false;
+    }
     return true;
   });
 }

@@ -1,76 +1,60 @@
-import Link from "next/link";
-import { TEAMS, TEAM_CODES, themeVars } from "./lib/teams";
-import { SITE_NAME, SITE_TAGLINE } from "./lib/config";
+import { TEAM_CODES } from "./lib/teams";
+import { SITE_NAME } from "./lib/config";
 import AuthWidget from "./components/AuthWidget";
-
-// Grouping for the landing grid (division order, like the teams.ts comments).
-const DIVISIONS: { name: string; codes: string[] }[] = [
-  { name: "Atlantic", codes: ["TOR", "MTL", "BOS", "BUF", "DET", "FLA", "OTT", "TBL"] },
-  { name: "Metropolitan", codes: ["CAR", "CBJ", "NJD", "NYI", "NYR", "PHI", "PIT", "WSH"] },
-  { name: "Central", codes: ["CHI", "COL", "DAL", "MIN", "NSH", "STL", "UTA", "WPG"] },
-  { name: "Pacific", codes: ["ANA", "CGY", "EDM", "LAK", "SJS", "SEA", "VAN", "VGK"] },
-];
+import TeamBrowser from "./components/TeamBrowser";
 
 export default function Landing() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-4xl flex-col px-4 pb-14">
-      <div className="flex justify-end pt-4">
+    <main className="min-h-screen">
+      {/* Announcement strip */}
+      <div className="announce py-2 text-center text-[0.65rem] font-semibold uppercase tracking-[0.2em]">
+        Fan-made · all {TEAM_CODES.length} NHL teams · no login required
+      </div>
+
+      {/* Logo band — on the original background (transparent logo) */}
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt={`${SITE_NAME}?`}
+          className="h-9 w-auto sm:h-12"
+        />
         <AuthWidget />
       </div>
-      <header className="pt-6 text-center sm:pt-8">
-        <h1 className="block text-4xl leading-none text-ink sm:text-6xl">
-          {SITE_NAME}
-        </h1>
-        <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-ink-soft">
-          {SITE_TAGLINE}
-        </p>
-        <p className="mx-auto mt-4 max-w-xl text-sm text-ink-soft">
-          Pick a team. You&apos;ll be shown NHL players one at a time — guess
-          whether each one <strong>ever</strong> suited up for that team. Every
-          right answer extends your streak; one miss ends the run.
-        </p>
-      </header>
 
-      <p className="mt-8 text-center text-xs font-semibold uppercase tracking-widest text-ink-soft">
-        Choose your team
-      </p>
+      {/* Hero: sweeping arc + the puck */}
+      <section className="relative mx-auto max-w-5xl overflow-hidden px-4">
+        <div className="relative flex min-h-[15rem] items-center justify-center py-12 text-center sm:min-h-[18rem]">
+          {/* the big cream arc, only its curve shows on the left */}
+          <div className="hero-arc left-[-40%] top-[-30%] h-[34rem] w-[34rem] sm:left-[-22%]" />
 
-      <div className="mt-4 space-y-7">
-        {DIVISIONS.map((div) => (
-          <section key={div.name}>
-            <h2 className="mb-2 block text-xs tracking-widest text-ink-soft">
-              {div.name}
-            </h2>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {div.codes.map((code) => {
-                const t = TEAMS[code];
-                return (
-                  <Link
-                    key={code}
-                    href={`/${t.slug}`}
-                    prefetch={false}
-                    style={themeVars(code) as React.CSSProperties}
-                    className="team-tile relative flex h-24 flex-col justify-end overflow-hidden p-3"
-                  >
-                    <span className="tile-accent absolute left-0 top-0 h-full w-1.5" />
-                    <span className="block text-[0.7rem] tracking-widest opacity-80">
-                      {code}
-                    </span>
-                    <span className="block text-base leading-tight sm:text-lg">
-                      {t.short}
-                    </span>
-                  </Link>
-                );
-              })}
+          <div className="relative z-10 flex flex-col items-center">
+            <div className="puck flex h-44 w-44 items-center justify-center p-6 text-center sm:h-52 sm:w-52">
+              <span className="text-xl font-black uppercase leading-tight tracking-wide sm:text-2xl">
+                Are you
+                <br />a true
+                <br />fan?
+              </span>
             </div>
-          </section>
-        ))}
-      </div>
+            <p className="mx-auto mt-6 max-w-md text-sm text-ink-soft">
+              Pick a team — did each player <strong>ever</strong> suit up for
+              them? Build a streak; one miss ends the run.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <p className="mt-10 text-center text-[0.7rem] uppercase tracking-widest text-ink-soft/70">
-        {TEAM_CODES.length} teams · fan project · not affiliated with the NHL ·
-        data: NHL API + Hockey Databank
-      </p>
+      {/* Team picker */}
+      <section className="mx-auto max-w-5xl px-4 pb-16 pt-4">
+        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-ink-soft">
+          Choose your team
+        </p>
+        <TeamBrowser />
+        <p className="mt-12 text-center text-[0.7rem] uppercase tracking-widest text-ink-soft/70">
+          Fan project · not affiliated with the NHL · data: NHL API + Hockey
+          Databank
+        </p>
+      </section>
     </main>
   );
 }

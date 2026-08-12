@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useGame } from "../useGame";
 import { TEAMS } from "../lib/teams";
-import { SITE_NAME, HARDCORE_SECONDS } from "../lib/config";
+import { HARDCORE_SECONDS } from "../lib/config";
 import AuthWidget from "../components/AuthWidget";
 import {
   positionName,
@@ -49,7 +49,12 @@ export default function Game({ teamCode }: { teamCode: string }) {
       <section className="card mt-5 overflow-hidden">
         <div className="hem" />
         <div className="p-5 sm:p-7">
-          {g.status === "loading" && <Centered>Lacing up…</Centered>}
+          {g.status === "loading" && (
+            <div className="flex flex-col items-center gap-4 py-10 text-sm font-semibold text-ink-soft">
+              <span className="puck puck-spin h-10 w-10" aria-hidden />
+              Lacing up…
+            </div>
+          )}
           {g.status === "error" && (
             <Centered>
               Couldn&apos;t load the roster data. Check that{" "}
@@ -75,7 +80,7 @@ export default function Game({ teamCode }: { teamCode: string }) {
                   onDismiss={g.dismissImport}
                 />
               )}
-              <StartPanel g={g} teamShort={team.short} />
+              <StartPanel g={g} />
             </>
           )}
 
@@ -115,10 +120,7 @@ function Header({
         <Link href="/" prefetch={false} className="hover:text-team">
           ← all teams
         </Link>
-        <div className="flex items-center gap-3">
-          <span>{SITE_NAME}</span>
-          <AuthWidget />
-        </div>
+        <AuthWidget />
       </div>
       <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full crest">
         <span className="text-sm font-bold leading-none">{teamCode}</span>
@@ -165,13 +167,7 @@ function Tile({ label, value }: { label: string; value: number }) {
 }
 
 /* ------------------------------------------------------------- start/over */
-function StartPanel({
-  g,
-  teamShort,
-}: {
-  g: ReturnType<typeof useGame>;
-  teamShort: string;
-}) {
+function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
   const empty = g.pool.length === 0;
   return (
     <div className="text-center">
@@ -179,42 +175,51 @@ function StartPanel({
         {g.status === "over" ? "Next shift?" : "Face-off"}
       </h2>
 
-      <div className="mt-5 space-y-4 text-left">
-        <Control label="Mode">
-          <div className="flex flex-wrap gap-2">
+      <div className="mt-5 grid grid-cols-1 gap-6 text-left sm:grid-cols-2 sm:gap-0">
+        {/* Left side — Mode */}
+        <div className="sm:pr-6">
+          <div className="mb-3 block text-xs tracking-widest text-ink-soft">
+            Mode
+          </div>
+          <div className="flex flex-col gap-3">
             {(["casual", "hardcore"] as Mode[]).map((m) => (
               <button
                 key={m}
                 onClick={() => g.chooseMode(m)}
-                className={`pill ${g.mode === m ? "pill-active" : ""}`}
+                className={`fo-key ${g.mode === m ? "fo-key-on" : ""}`}
               >
                 {m}
+                <span className="mt-0.5 block text-[0.6rem] font-semibold normal-case tracking-wide opacity-75">
+                  {m === "hardcore"
+                    ? `${HARDCORE_SECONDS}s clock · only the tricky ones`
+                    : "no clock · any recognizable player"}
+                </span>
               </button>
             ))}
           </div>
-        </Control>
+        </div>
 
-        <Control label="Era">
-          <div className="flex flex-wrap gap-2">
+        {/* Right side — Era, split by a centre line */}
+        <div className="relative sm:border-l-2 sm:border-ink/10 sm:pl-6">
+          <div className="mb-3 block text-xs tracking-widest text-ink-soft">
+            Era
+          </div>
+          <div className="grid grid-cols-2 gap-2">
             {g.eras.map((era) => (
               <button
                 key={era.id}
                 onClick={() => g.chooseEra(era.id)}
-                className={`pill ${g.eraId === era.id ? "pill-active" : ""}`}
+                className={`fo-key ${g.eraId === era.id ? "fo-key-on" : ""}`}
               >
                 {era.label}
               </button>
             ))}
           </div>
-        </Control>
+        </div>
       </div>
 
-      <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-ink-soft">
-        {g.mode === "hardcore"
-          ? `Hardcore · ${HARDCORE_SECONDS}s clock · obscure ${teamShort} & well-travelled others`
-          : "Casual · no clock · any recognizable player"}
-        {" · "}
-        {g.pool.length} in pool
+      <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+        {g.pool.length} players in the {g.mode} pool
       </p>
 
       <button
@@ -229,23 +234,6 @@ function StartPanel({
           No players match this era in hardcore. Try another era or casual mode.
         </p>
       )}
-    </div>
-  );
-}
-
-function Control({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <div className="mb-2 block text-xs tracking-widest text-ink-soft">
-        {label}
-      </div>
-      {children}
     </div>
   );
 }
@@ -268,7 +256,7 @@ function PlayPanel({
     <div className="text-center">
       {mode === "hardcore" && <Clock timeLeft={timeLeft} />}
 
-      <div className="relative mt-2 rounded-xl border border-ink/15 bg-white/60 px-4 py-6">
+      <div className="relative mt-2 rounded-[4px] border border-ink/15 bg-white/60 px-4 py-6">
         <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full crest text-sm">
           {player.position}
         </span>
@@ -348,7 +336,7 @@ function GameOver({
 }) {
   const { player, reason, guess, streak } = result;
   return (
-    <div className="mb-6 rounded-xl border-2 border-penalty/40 bg-white/70 p-5 text-center">
+    <div className="mb-6 rounded-[4px] border-2 border-penalty/40 bg-white/70 p-5 text-center">
       <div className="block text-2xl text-penalty">
         {reason === "timeout" ? "Time!" : "Run over"}
       </div>
@@ -387,7 +375,7 @@ function ImportPrompt({
   onDismiss: () => void;
 }) {
   return (
-    <div className="mb-5 flex items-center gap-3 rounded-xl border border-team/30 bg-white/70 p-3 text-left">
+    <div className="mb-5 flex items-center gap-3 rounded-[4px] border border-team/30 bg-white/70 p-3 text-left">
       <p className="flex-1 text-xs text-ink-soft">
         You have <strong className="text-ink">{count}</strong> local best
         streak{count === 1 ? "" : "s"} not saved to your account.

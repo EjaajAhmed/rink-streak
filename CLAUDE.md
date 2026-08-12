@@ -108,7 +108,8 @@ resolves to "not a current team."
   "teamDecades": { "TOR": ["2010s"], "BOS": ["2020s"] },
   "careerGP": 800,
   "teamCount": 3,
-  "iconic": false
+  "iconic": false,
+  "active": false
 }
 ```
 Field notes (all counts are NHL regular-season games; playoff-only stints not
@@ -123,8 +124,11 @@ counted — negligible):
   collapsed via `franchise_key`). Used to keep obvious legends / one-club players
   out of the hardcore "No" pool.
 - `iconic` — instantly recognizable (Hall of Fame, or ≥1000 pts / ≥1200 GP).
+- `active` — played in the dataset's most recent season (used by casual mode so
+  current players stay eligible even below the games threshold).
 
-Player pool: recognizable players (`careerGP` ≥ ~100).
+Player pool: recognizable players (`careerGP` ≥ ~100); casual mode tightens this
+further (below).
 
 Verify the data — it IS the game. After any build, the ETL prints spot-checks:
 Sundin/Matthews→TOR true; McDavid→EDM true, TOR false; Kessel→TOR/BOS/PIT/VGK
@@ -132,7 +136,17 @@ true (ARI excluded, strict); Kovalchuk→NJD true, WPG false; Sakic→COL only.
 
 ## Difficulty modes (per active team)
 The pool depends on a mode; both modes respect the era selector.
-- **Casual** — the full recognizable pool (`careerGP` ≥ ~100).
+
+Era rule (both modes): when a specific decade is selected, a player who played
+for the team is only shown if they played for it *in that decade*
+(`teamDecades[team]` overlaps the selection); a player who never played for the
+team just needs to be active in that decade. This avoids the confusing case of a
+YES player who wore the sweater in a different decade than the one selected.
+"All eras" applies no decade filter.
+
+- **Casual** — popular players only: `careerGP` ≥ 500 **or** `active`
+  (`CASUAL_MIN_GP` in `lib/config.ts`). Current players count regardless of
+  games since they're recognizable now.
 - **Hardcore** — strip the gimmes for the ACTIVE team:
   - YES (played this team): eligible only if `teamGP[team]` < 82 (a "cup of
     coffee" — under ~one full season there).

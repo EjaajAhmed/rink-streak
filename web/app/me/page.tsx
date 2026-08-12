@@ -7,51 +7,27 @@ import { getBrowserSupabase } from "../lib/supabase/client";
 import { TEAMS } from "../lib/teams";
 import { SITE_NAME } from "../lib/config";
 import AuthWidget from "../components/AuthWidget";
-import {
-  fetchProfile,
-  fetchProfileStats,
-  updateProfile,
-  type Profile,
-  type ProfileStats,
-} from "../lib/stats";
+import { fetchProfileStats, type ProfileStats } from "../lib/stats";
 
 export default function ProfilePage() {
   const { configured, loading, user } = useAuth();
   const [stats, setStats] = useState<ProfileStats | null>(null);
-  const [profile, setProfile] = useState<Profile>({
-    display_name: null,
-    favourite_team: null,
-  });
-  const [savedNote, setSavedNote] = useState("");
 
   useEffect(() => {
     const sb = getBrowserSupabase();
     if (!user || !sb) return;
     let alive = true;
-    Promise.all([fetchProfileStats(sb, user.id), fetchProfile(sb, user.id)]).then(
-      ([s, p]) => {
-        if (!alive) return;
-        setStats(s);
-        setProfile(p);
-      },
-    );
+    fetchProfileStats(sb, user.id).then((s) => {
+      if (alive) setStats(s);
+    });
     return () => {
       alive = false;
     };
   }, [user]);
 
-  const save = async (patch: Partial<Profile>) => {
-    const sb = getBrowserSupabase();
-    if (!user || !sb) return;
-    const next = { ...profile, ...patch };
-    setProfile(next);
-    await updateProfile(sb, user.id, patch);
-    setSavedNote("Saved");
-    setTimeout(() => setSavedNote(""), 1500);
-  };
-
-  // Favourite team is derived, not chosen: the team you've streaked highest on.
-  // perTeam is pre-sorted by best desc, so the first with a real streak wins.
+  // Name = the email name before "@" (no separate display-name concept).
+  const name = user?.email ? user.email.split("@")[0] : "";
+  // Favourite team is derived: the team you've streaked highest on.
   const favourite = stats?.perTeam.find((t) => t.best > 0) ?? null;
 
   return (
@@ -78,35 +54,23 @@ export default function ProfilePage() {
         <>
           {/* Identity */}
           <section className="card mt-5 p-5">
-            <label className="mb-1 block text-xs tracking-widest text-ink-soft">
-              Display name
-            </label>
-            <div className="flex gap-2">
-              <input
-                value={profile.display_name ?? ""}
-                onChange={(e) =>
-                  setProfile((p) => ({ ...p, display_name: e.target.value }))
-                }
-                placeholder="Add a name"
-                className="flex-1 rounded-lg border-2 border-ink/20 bg-white/70 px-3 py-2 text-sm text-ink outline-none focus:border-team"
-              />
-              <button
-                onClick={() => save({ display_name: profile.display_name })}
-                className="pill pill-active"
-              >
-                Save
-              </button>
+            <div className="text-xs tracking-widest text-ink-soft">
+              Signed in as
             </div>
+            <div className="mt-1 text-xl text-ink">{name}</div>
 
-            <label className="mb-1 mt-4 block text-xs tracking-widest text-ink-soft">
+            <div className="mb-1 mt-4 block text-xs tracking-widest text-ink-soft">
               Favourite team
-            </label>
-            <div className="rounded-lg border-2 border-dashed border-ink/20 bg-white/40 px-3 py-2 text-sm text-ink">
+            </div>
+            <div className="rounded-[4px] border-2 border-dashed border-ink/20 bg-white/40 px-3 py-2 text-sm text-ink">
               {favourite ? (
                 <>
-                  <span className="font-bold">{TEAMS[favourite.teamCode]?.name ?? favourite.teamCode}</span>
+                  <span className="font-bold">
+                    {TEAMS[favourite.teamCode]?.name ?? favourite.teamCode}
+                  </span>
                   <span className="text-ink-soft">
-                    {" "}— your best streak ({favourite.best})
+                    {" "}
+                    — your best streak ({favourite.best})
                   </span>
                 </>
               ) : (
@@ -116,9 +80,6 @@ export default function ProfilePage() {
                 </span>
               )}
             </div>
-            {savedNote && (
-              <p className="mt-2 text-xs font-semibold text-team">{savedNote}</p>
-            )}
           </section>
 
           {/* Overall */}
@@ -146,7 +107,10 @@ export default function ProfilePage() {
                 </thead>
                 <tbody>
                   {stats.perTeam.map((t) => (
-                    <tr key={t.teamCode} className="border-b border-ink/5 last:border-0">
+                    <tr
+                      key={t.teamCode}
+                      className="border-b border-ink/5 last:border-0"
+                    >
                       <td className="px-4 py-2 text-ink">
                         <Link
                           href={`/${TEAMS[t.teamCode]?.slug ?? ""}`}
@@ -181,7 +145,7 @@ export default function ProfilePage() {
 
 function Note({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-6 rounded-xl border border-ink/15 bg-white/60 p-5 text-sm text-ink-soft">
+    <p className="mt-6 rounded-[4px] border border-ink/15 bg-white/60 p-5 text-sm text-ink-soft">
       {children}
     </p>
   );

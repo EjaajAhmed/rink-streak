@@ -412,6 +412,12 @@ def build():
         people[synth] = agg
         synth += 1
 
+    # "active" = played in the dataset's most recent season. Used by casual mode,
+    # where current players are always eligible even below the games threshold.
+    latest_season = max((max(a["seasons"]) for a in people.values() if a["seasons"]),
+                        default=0)
+    print(f"  latest season in data: {latest_season}-{latest_season + 1}")
+
     # Derive output entries + pool filter.
     entries = []
     for pid, a in people.items():
@@ -430,6 +436,7 @@ def build():
             "careerGP": a["gp"],
             "teamCount": len({franchise_key(c) for c in a["clubs"]}),
             "iconic": iconic,
+            "active": bool(a["seasons"]) and max(a["seasons"]) == latest_season,
         })
     entries.sort(key=lambda e: (-e["careerGP"], e["name"]))
 
