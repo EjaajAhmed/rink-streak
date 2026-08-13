@@ -21,17 +21,20 @@ type AuthState = {
   googleEnabled: boolean; // Google provider actually turned on in Supabase
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<EmailResult>;
+  verifyEmailCode: (email: string, token: string) => Promise<EmailResult>;
   signOut: () => Promise<void>;
 };
 
 const noop = async () => {};
+const notEnabled = async () => ({ ok: false, error: "Sign-in is not enabled." });
 const DEFAULT: AuthState = {
   configured: false,
   loading: false,
   user: null,
   googleEnabled: false,
   signInWithGoogle: noop,
-  signInWithEmail: async () => ({ ok: false, error: "Sign-in is not enabled." }),
+  signInWithEmail: notEnabled,
+  verifyEmailCode: notEnabled,
   signOut: noop,
 };
 
@@ -109,6 +112,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     [supabase],
   );
 
+  // Verify the 6-digit code from the email instead of clicking the link — immune
+  // to email link prefetching/scanners consuming the single-use magic link.
+  const verifyEmailCode = useCallback(
+    async (email: string, token: string): Promise<EmailResult> => {
+      if (!supabase) return { ok: false, error: "Sign-in is not enabled." };
+      const { error } = await supabase.auth.verifyOtp({
+        email: email.trim(),
+        token: token.trim(),
+        type: "email",
+      });
+      return error ? { ok: false, error: error.message } : { ok: true };
+    },
+    [supabase],
+  );
+
   const signOut = useCallback(async () => {
     if (!supabase) return;
     await supabase.auth.signOut();
@@ -123,6 +141,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       googleEnabled,
       signInWithGoogle,
       signInWithEmail,
+      verifyEmailCode,
       signOut,
     }),
     [
@@ -132,6 +151,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       googleEnabled,
       signInWithGoogle,
       signInWithEmail,
+      verifyEmailCode,
       signOut,
     ],
   );
