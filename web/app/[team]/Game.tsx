@@ -1,29 +1,44 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useGame } from "../useGame";
 import { TEAMS } from "../lib/teams";
 import { HARDCORE_SECONDS } from "../lib/config";
 import AuthWidget from "../components/AuthWidget";
 import SupportLink from "../components/SupportLink";
-import {
-  positionName,
-  revealLine,
-  type Mode,
-  type Player,
-} from "../lib/players";
-
-// Compact era name for scoreboard / summary labels.
-function eraShort(eraId: string, eraLabel: string): string {
-  if (eraId === "all") return "all eras";
-  if (eraId === "pre1970") return "pre-1970";
-  return eraLabel;
-}
+import { type Mode, type Player } from "../lib/players";
+import { getStrings, frenchAvailable, type Lang, type Strings } from "../lib/i18n";
 
 export default function Game({ teamCode }: { teamCode: string }) {
   const team = TEAMS[teamCode];
   const g = useGame(teamCode);
+
+  // Language: English everywhere; French only offered on the Canadiens page.
+  const canFrench = frenchAvailable(teamCode);
+  const [lang, setLang] = useState<Lang>("en");
+  useEffect(() => {
+    if (!canFrench) return;
+    try {
+      const v = localStorage.getItem("dth.lang.mtl");
+      if (v === "fr" || v === "en") setLang(v);
+    } catch {
+      /* ignore */
+    }
+  }, [canFrench]);
+  const chooseLang = (l: Lang) => {
+    setLang(l);
+    try {
+      localStorage.setItem("dth.lang.mtl", l);
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const t = getStrings(lang);
+  const teamName = t.teamFull(teamCode, team.name);
+  const teamShort = t.teamShort(teamCode, team.short);
+  const eraCompact = t.eraShort(g.eraId, g.era.label);
 
   // Keyboard: Y / → = yes, N / ← = no, while playing.
   useEffect(() => {
@@ -39,12 +54,20 @@ export default function Game({ teamCode }: { teamCode: string }) {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col px-4 pb-10">
-      <Header teamCode={teamCode} teamName={team.name} teamShort={team.short} />
+      <Header
+        t={t}
+        teamCode={teamCode}
+        teamName={teamName}
+        teamShort={teamShort}
+        lang={lang}
+        onLang={canFrench ? chooseLang : undefined}
+      />
       <Scoreboard
+        t={t}
         streak={g.streak}
         best={g.bestForCurrent}
         mode={g.mode}
-        era={eraShort(g.eraId, g.era.label)}
+        era={eraCompact}
       />
 
       <section className="card mt-5 overflow-hidden">
@@ -53,42 +76,40 @@ export default function Game({ teamCode }: { teamCode: string }) {
           {g.status === "loading" && (
             <div className="flex flex-col items-center gap-4 py-10 text-sm font-semibold text-ink-soft">
               <span className="puck puck-spin h-10 w-10" aria-hidden />
-              Lacing up…
+              {t.lacingUp}
             </div>
           )}
-          {g.status === "error" && (
-            <Centered>
-              Couldn&apos;t load the roster data. Check that{" "}
-              <code>players.json</code> is present.
-            </Centered>
-          )}
+          {g.status === "error" && <Centered>{t.loadError}</Centered>}
 
           {(g.status === "ready" || g.status === "over") && (
             <>
               {g.status === "over" && g.result && (
                 <GameOver
+                  t={t}
                   result={g.result}
                   teamCode={teamCode}
-                  teamShort={team.short}
+                  teamShort={teamShort}
                   mode={g.mode}
-                  era={eraShort(g.eraId, g.era.label)}
+                  era={eraCompact}
                 />
               )}
               {g.importable > 0 && (
                 <ImportPrompt
+                  t={t}
                   count={g.importable}
                   onImport={g.importLocal}
                   onDismiss={g.dismissImport}
                 />
               )}
-              <StartPanel g={g} />
+              <StartPanel t={t} g={g} />
             </>
           )}
 
           {g.status === "playing" && g.current && (
             <PlayPanel
+              t={t}
               player={g.current}
-              teamName={team.name}
+              teamName={teamName}
               mode={g.mode}
               timeLeft={g.timeLeft}
               onAnswer={g.answer}
@@ -98,28 +119,34 @@ export default function Game({ teamCode }: { teamCode: string }) {
         <div className="hem" />
       </section>
 
-      {g.status !== "playing" && <HowToPlay teamShort={team.short} />}
+      {g.status !== "playing" && <HowToPlay t={t} teamShort={teamShort} />}
 
-      <Footer teamName={team.name} />
+      <Footer t={t} teamName={teamName} />
     </main>
   );
 }
 
 /* ---------------------------------------------------------------- header */
 function Header({
+  t,
   teamCode,
   teamName,
   teamShort,
+  lang,
+  onLang,
 }: {
+  t: Strings;
   teamCode: string;
   teamName: string;
   teamShort: string;
+  lang: Lang;
+  onLang?: (l: Lang) => void;
 }) {
   return (
     <header className="pt-6 text-center">
       <div className="mb-4 flex items-center justify-between text-[0.7rem] font-semibold uppercase tracking-widest text-ink-soft">
         <Link href="/" prefetch={false} className="hover:text-team">
-          ← all teams
+          {t.allTeams}
         </Link>
         <AuthWidget />
       </div>
@@ -130,19 +157,45 @@ function Header({
         {teamName}
       </h1>
       <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-ink-soft">
-        Did they ever play for the {teamShort}?
+        {t.didThey(teamShort)}
       </p>
+      {onLang && <LangToggle lang={lang} onChange={onLang} />}
     </header>
+  );
+}
+
+function LangToggle({
+  lang,
+  onChange,
+}: {
+  lang: Lang;
+  onChange: (l: Lang) => void;
+}) {
+  return (
+    <div className="mt-3 inline-flex overflow-hidden rounded-full border-2 border-ink/20 text-[0.7rem] font-bold uppercase tracking-widest">
+      {(["en", "fr"] as Lang[]).map((l) => (
+        <button
+          key={l}
+          onClick={() => onChange(l)}
+          aria-pressed={lang === l}
+          className={`px-3 py-1 ${lang === l ? "bg-team text-team-ink" : "text-ink-soft hover:text-ink"}`}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
   );
 }
 
 /* ------------------------------------------------------------ scoreboard */
 function Scoreboard({
+  t,
   streak,
   best,
   mode,
   era,
 }: {
+  t: Strings;
   streak: number;
   best: number;
   mode: Mode;
@@ -150,8 +203,8 @@ function Scoreboard({
 }) {
   return (
     <div className="mt-6 grid grid-cols-2 gap-3">
-      <Tile label="Streak" value={streak} />
-      <Tile label={`Best · ${mode} · ${era}`} value={best} />
+      <Tile label={t.streak} value={streak} />
+      <Tile label={`${t.best} · ${t.modeLabel(mode)} · ${era}`} value={best} />
     </div>
   );
 }
@@ -168,19 +221,19 @@ function Tile({ label, value }: { label: string; value: number }) {
 }
 
 /* ------------------------------------------------------------- start/over */
-function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
+function StartPanel({ t, g }: { t: Strings; g: ReturnType<typeof useGame> }) {
   const empty = g.pool.length === 0;
   return (
     <div className="text-center">
       <h2 className="block text-2xl text-ink">
-        {g.status === "over" ? "Next shift?" : "Face-off"}
+        {g.status === "over" ? t.nextShift : t.faceoff}
       </h2>
 
       <div className="mt-5 grid grid-cols-1 gap-6 text-left sm:grid-cols-2 sm:gap-0">
         {/* Left side — Mode */}
         <div className="sm:pr-6">
           <div className="mb-3 block text-xs tracking-widest text-ink-soft">
-            Mode
+            {t.modeTitle}
           </div>
           <div className="flex flex-col gap-3">
             {(["casual", "hardcore"] as Mode[]).map((m) => (
@@ -189,11 +242,9 @@ function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
                 onClick={() => g.chooseMode(m)}
                 className={`fo-key ${g.mode === m ? "fo-key-on" : ""}`}
               >
-                {m}
+                {t.modeLabel(m)}
                 <span className="mt-0.5 block text-[0.6rem] font-semibold normal-case tracking-wide opacity-75">
-                  {m === "hardcore"
-                    ? `${HARDCORE_SECONDS}s clock · only the tricky ones`
-                    : "no clock · any recognizable player"}
+                  {m === "hardcore" ? t.hardcoreSub(HARDCORE_SECONDS) : t.casualSub}
                 </span>
               </button>
             ))}
@@ -203,7 +254,7 @@ function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
         {/* Right side — Era, split by a centre line */}
         <div className="relative sm:border-l-2 sm:border-ink/10 sm:pl-6">
           <div className="mb-3 block text-xs tracking-widest text-ink-soft">
-            Era
+            {t.eraTitle}
           </div>
           <div className="grid grid-cols-2 gap-2">
             {g.eras.map((era) => (
@@ -212,7 +263,7 @@ function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
                 onClick={() => g.chooseEra(era.id)}
                 className={`fo-key ${g.eraId === era.id ? "fo-key-on" : ""}`}
               >
-                {era.label}
+                {t.eraPill(era.id, era.label)}
               </button>
             ))}
           </div>
@@ -220,7 +271,7 @@ function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
       </div>
 
       <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-ink-soft">
-        {g.pool.length} players in the {g.mode} pool
+        {t.poolLine(g.pool.length, t.modeLabel(g.mode))}
       </p>
 
       <button
@@ -228,12 +279,10 @@ function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
         disabled={empty}
         className="btn-answer btn-yes mt-5 w-full text-lg disabled:cursor-not-allowed disabled:opacity-40"
       >
-        {g.status === "over" ? "Lace up again" : "Drop the puck"}
+        {g.status === "over" ? t.laceAgain : t.dropPuck}
       </button>
       {empty && (
-        <p className="mt-2 text-xs font-semibold text-penalty">
-          No players match this era in hardcore. Try another era or casual mode.
-        </p>
+        <p className="mt-2 text-xs font-semibold text-penalty">{t.emptyPool}</p>
       )}
     </div>
   );
@@ -241,12 +290,14 @@ function StartPanel({ g }: { g: ReturnType<typeof useGame> }) {
 
 /* -------------------------------------------------------------- play view */
 function PlayPanel({
+  t,
   player,
   teamName,
   mode,
   timeLeft,
   onAnswer,
 }: {
+  t: Strings;
   player: Player;
   teamName: string;
   mode: Mode;
@@ -255,14 +306,14 @@ function PlayPanel({
 }) {
   return (
     <div className="text-center">
-      {mode === "hardcore" && <Clock timeLeft={timeLeft} />}
+      {mode === "hardcore" && <Clock t={t} timeLeft={timeLeft} />}
 
       <div className="relative mt-2 rounded-[4px] border border-ink/15 bg-white/60 px-4 py-6">
         <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full crest text-sm">
           {player.position}
         </span>
         <div className="block text-[0.7rem] tracking-widest text-ink-soft">
-          {positionName(player.position)} · {player.decadesActive.join(" · ")}
+          {t.positionName(player.position)} · {player.decadesActive.join(" · ")}
         </div>
         <div className="mt-1 block text-3xl leading-tight text-ink sm:text-4xl">
           {player.name}
@@ -270,32 +321,32 @@ function PlayPanel({
       </div>
 
       <p className="mt-5 text-sm font-semibold uppercase tracking-wider text-ink-soft">
-        Ever played a game for the {teamName}?
+        {t.everPlayed(teamName)}
       </p>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
         <button className="btn-answer btn-no" onClick={() => onAnswer(false)}>
-          No
+          {t.no}
           <span className="mt-1 block text-[0.65rem] font-semibold tracking-wider opacity-70">
-            never there
+            {t.neverThere}
           </span>
         </button>
         <button className="btn-answer btn-yes" onClick={() => onAnswer(true)}>
-          Yes
+          {t.yes}
           <span className="mt-1 block text-[0.65rem] font-semibold tracking-wider opacity-80">
-            wore the sweater
+            {t.woreSweater}
           </span>
         </button>
       </div>
 
       <p className="mt-4 text-[0.7rem] uppercase tracking-widest text-ink-soft/70">
-        Keys: N / ← = No · Y / → = Yes
+        {t.keys}
       </p>
     </div>
   );
 }
 
-function Clock({ timeLeft }: { timeLeft: number }) {
+function Clock({ t, timeLeft }: { t: Strings; timeLeft: number }) {
   const pct = Math.max(0, Math.min(100, (timeLeft / HARDCORE_SECONDS) * 100));
   const warn = timeLeft <= 3;
   const secs = Math.ceil(timeLeft);
@@ -303,7 +354,7 @@ function Clock({ timeLeft }: { timeLeft: number }) {
     <div className="mb-4">
       <div className="mb-1 flex items-baseline justify-between">
         <span className="block text-[0.7rem] tracking-widest text-ink-soft">
-          Period clock
+          {t.periodClock}
         </span>
         <span
           className={`numeral text-2xl font-bold ${warn ? "tick-warn" : "text-ink"}`}
@@ -323,12 +374,14 @@ function Clock({ timeLeft }: { timeLeft: number }) {
 
 /* -------------------------------------------------------------- game over */
 function GameOver({
+  t,
   result,
   teamCode,
   teamShort,
   mode,
   era,
 }: {
+  t: Strings;
   result: NonNullable<ReturnType<typeof useGame>["result"]>;
   teamCode: string;
   teamShort: string;
@@ -339,27 +392,27 @@ function GameOver({
   return (
     <div className="mb-6 rounded-[4px] border-2 border-penalty/40 bg-white/70 p-5 text-center">
       <div className="block text-2xl text-penalty">
-        {reason === "timeout" ? "Time!" : "Run over"}
+        {reason === "timeout" ? t.timeUp : t.runOver}
       </div>
       <p className="mt-1 text-sm font-semibold text-ink-soft">
         {reason === "timeout"
-          ? "The clock beat you."
+          ? t.clockBeat
           : guess
-            ? `You said they played for the ${teamShort}.`
-            : `You said they never did.`}
+            ? t.saidPlayed(teamShort)
+            : t.saidNever}
       </p>
 
       <div className="laces mx-auto mt-4 max-w-sm pt-4">
         <div className="block text-lg text-ink">{player.name}</div>
         <p className="mt-1 text-sm text-ink-soft">
-          {revealLine(player, teamCode, teamShort)}
+          {t.reveal(player, teamCode, teamShort)}
         </p>
       </div>
 
       <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-ink-soft">
-        Streak this run:{" "}
+        {t.streakThisRun}{" "}
         <span className="numeral text-xl font-bold text-ink">{streak}</span> ·{" "}
-        {mode} · {era}
+        {t.modeLabel(mode)} · {era}
       </p>
     </div>
   );
@@ -367,22 +420,21 @@ function GameOver({
 
 /* --------------------------------------------------------- import prompt */
 function ImportPrompt({
+  t,
   count,
   onImport,
   onDismiss,
 }: {
+  t: Strings;
   count: number;
   onImport: () => void;
   onDismiss: () => void;
 }) {
   return (
     <div className="mb-5 flex items-center gap-3 rounded-[4px] border border-team/30 bg-white/70 p-3 text-left">
-      <p className="flex-1 text-xs text-ink-soft">
-        You have <strong className="text-ink">{count}</strong> local best
-        streak{count === 1 ? "" : "s"} not saved to your account.
-      </p>
+      <p className="flex-1 text-xs text-ink-soft">{t.importPrompt(count)}</p>
       <button onClick={onImport} className="pill pill-active">
-        Import
+        {t.importBtn}
       </button>
       <button
         onClick={onDismiss}
@@ -396,35 +448,21 @@ function ImportPrompt({
 }
 
 /* ------------------------------------------------------------ how to play */
-function HowToPlay({ teamShort }: { teamShort: string }) {
+function HowToPlay({ t, teamShort }: { t: Strings; teamShort: string }) {
   return (
     <details className="card mt-4 overflow-hidden">
       <summary className="flex items-center justify-between px-5 py-3">
-        <span className="block text-sm text-ink">How to play</span>
+        <span className="block text-sm text-ink">{t.howToPlay}</span>
         <span className="howto-mark text-lg text-ink-soft">+</span>
       </summary>
       <div className="laces mx-5 mb-5 space-y-2 pt-3 text-sm text-ink-soft">
-        <p>
-          You&apos;re shown an NHL player. Guess whether they{" "}
-          <strong>ever</strong> played a game for the {teamShort}.
-        </p>
+        <p>{t.howToIntro(teamShort)}</p>
         <ul className="list-disc space-y-1 pl-5">
-          <li>A right answer extends your streak; one miss ends the run.</li>
-          <li>
-            <strong>Casual</strong> — any recognizable player, no clock.
-          </li>
-          <li>
-            <strong>Hardcore</strong> — only tricky ones (obscure {teamShort} &amp;
-            well-travelled others) on a {HARDCORE_SECONDS}-second clock.
-          </li>
-          <li>
-            Pick an era to narrow the pool. Best streak is saved per team, mode
-            &amp; era.
-          </li>
-          <li>
-            Keyboard: <strong>Y</strong> / → for yes, <strong>N</strong> / ← for
-            no.
-          </li>
+          <li>{t.howToWin}</li>
+          <li>{t.howToCasual}</li>
+          <li>{t.howToHardcore(HARDCORE_SECONDS, teamShort)}</li>
+          <li>{t.howToEra}</li>
+          <li>{t.howToKeys}</li>
         </ul>
       </div>
     </details>
@@ -440,11 +478,10 @@ function Centered({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Footer({ teamName }: { teamName: string }) {
+function Footer({ t, teamName }: { t: Strings; teamName: string }) {
   return (
     <footer className="mt-8 text-center text-[0.7rem] uppercase tracking-widest text-ink-soft/60">
-      Fan project · not affiliated with the NHL or the {teamName} · data: NHL API
-      + Hockey Databank
+      {t.footer(teamName)}
       <SupportLink />
     </footer>
   );

@@ -11,14 +11,31 @@ export default function SupportLink({
   variant?: "footer" | "announce";
 }) {
   if (!SUPPORT_URL) return null;
-  const cls =
-    variant === "announce"
-      ? "text-gold hover:underline"
-      : "whitespace-nowrap text-team hover:underline";
+
+  // Announcement bar: always its own centred line beneath the main text.
+  if (variant === "announce") {
+    return (
+      <a
+        href={SUPPORT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-1 block text-gold hover:underline"
+      >
+        ♥ {SUPPORT_LABEL}
+      </a>
+    );
+  }
+
+  // Footer: inline with its own leading separator.
   return (
     <>
       {" · "}
-      <a href={SUPPORT_URL} target="_blank" rel="noopener noreferrer" className={cls}>
+      <a
+        href={SUPPORT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whitespace-nowrap text-team hover:underline"
+      >
         ♥ {SUPPORT_LABEL}
       </a>
     </>

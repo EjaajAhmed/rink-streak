@@ -8,8 +8,8 @@ export default function Landing() {
   return (
     <main className="min-h-screen">
       {/* Announcement strip */}
-      <div className="announce py-1.5 text-center text-[0.6rem] font-semibold uppercase tracking-[0.16em]">
-        Fan-made · {TEAM_CODES.length} NHL teams · no login required
+      <div className="announce py-2 text-center text-[0.6rem] font-semibold uppercase tracking-[0.16em]">
+        <div>Fan-made · {TEAM_CODES.length} NHL teams · no login required</div>
         <SupportLink variant="announce" />
       </div>
 
