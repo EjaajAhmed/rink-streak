@@ -20,7 +20,10 @@ export default function Landing() {
           alt={`${SITE_NAME}?`}
           className="h-9 w-auto sm:h-12"
         />
-        <AuthWidget />
+        <div className="flex items-center gap-4">
+          <SupportLink variant="header" />
+          <AuthWidget />
+        </div>
       </div>
 
       {/* Hero: sweeping arc + the puck */}
