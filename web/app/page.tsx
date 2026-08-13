@@ -8,8 +8,9 @@ export default function Landing() {
   return (
     <main className="min-h-screen">
       {/* Announcement strip */}
-      <div className="announce py-2 text-center text-[0.65rem] font-semibold uppercase tracking-[0.2em]">
-        Fan-made · all {TEAM_CODES.length} NHL teams · no login required
+      <div className="announce py-1.5 text-center text-[0.6rem] font-semibold uppercase tracking-[0.16em]">
+        Fan-made · {TEAM_CODES.length} NHL teams · no login required
+        <SupportLink variant="announce" />
       </div>
 
       {/* Logo band — on the original background (transparent logo) */}
@@ -20,10 +21,7 @@ export default function Landing() {
           alt={`${SITE_NAME}?`}
           className="h-9 w-auto sm:h-12"
         />
-        <div className="flex items-center gap-4">
-          <SupportLink variant="header" />
-          <AuthWidget />
-        </div>
+        <AuthWidget />
       </div>
 
       {/* Hero: sweeping arc + the puck */}
