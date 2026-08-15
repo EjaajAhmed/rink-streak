@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_NAME, SITE_TAGLINE } from "./lib/config";
 import { AuthProvider } from "./lib/auth";
+import Analytics from "./components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>{children}</AuthProvider>
+        <Analytics />
       </body>
     </html>
   );

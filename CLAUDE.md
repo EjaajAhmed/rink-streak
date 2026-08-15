@@ -54,6 +54,19 @@ Phases 3–6 (leaderboards, custom domain/SEO + Leafs Legend cutover, monetizati
   leaderboards + server-authoritative validation are Phase 3 — do NOT make these
   tables public-readable before then.
 
+### Site analytics (self-hosted, traffic sources)
+- Cookieless tracker on a self-hosted Railway instance. Provider-agnostic:
+  `NEXT_PUBLIC_ANALYTICS_SRC` plus **either** `NEXT_PUBLIC_ANALYTICS_WEBSITE_ID`
+  (Umami) **or** `NEXT_PUBLIC_ANALYTICS_DOMAIN` (Plausible).
+- Guard is `isAnalyticsConfigured()` in `web/app/lib/analytics/config.ts`; the
+  tag is rendered by `web/app/components/Analytics.tsx` from the root layout.
+  With `NEXT_PUBLIC_ANALYTICS_SRC` unset **no script tag is emitted at all**, so
+  local dev and the guest build are unchanged (principle 1).
+- Traffic sources come from `document.referrer` + `utm_*` on the landing URL,
+  which the tracker reads by itself — never add per-visit reporting of our own.
+- These vars are baked in at **build** time (`NEXT_PUBLIC_*`), so changing them
+  in Railway requires a redeploy, not just a restart.
+
 ## Stack
 - Web: Next.js (App Router) + React + TypeScript + Tailwind. Static / client-side.
   Per-team pages are statically generated (`generateStaticParams`). Deploy on
