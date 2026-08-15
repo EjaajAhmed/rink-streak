@@ -54,18 +54,30 @@ Phases 3–6 (leaderboards, custom domain/SEO + Leafs Legend cutover, monetizati
   leaderboards + server-authoritative validation are Phase 3 — do NOT make these
   tables public-readable before then.
 
-### Site analytics (self-hosted, traffic sources)
-- Cookieless tracker on a self-hosted Railway instance. Provider-agnostic:
-  `NEXT_PUBLIC_ANALYTICS_SRC` plus **either** `NEXT_PUBLIC_ANALYTICS_WEBSITE_ID`
-  (Umami) **or** `NEXT_PUBLIC_ANALYTICS_DOMAIN` (Plausible).
+### Site analytics — Traffic Source (self-hosted on Railway)
+- Env: `NEXT_PUBLIC_ANALYTICS_SRC` (the tracker's full public `…/t.js` URL) and
+  `NEXT_PUBLIC_ANALYTICS_SITE_ID`. Both are public, neither is a secret. Set on
+  the **site** service, not the analytics service.
 - Guard is `isAnalyticsConfigured()` in `web/app/lib/analytics/config.ts`; the
   tag is rendered by `web/app/components/Analytics.tsx` from the root layout.
-  With `NEXT_PUBLIC_ANALYTICS_SRC` unset **no script tag is emitted at all**, so
-  local dev and the guest build are unchanged (principle 1).
-- Traffic sources come from `document.referrer` + `utm_*` on the landing URL,
-  which the tracker reads by itself — never add per-visit reporting of our own.
-- These vars are baked in at **build** time (`NEXT_PUBLIC_*`), so changing them
-  in Railway requires a redeploy, not just a restart.
+  With either var unset **no script tag is emitted at all**, so local dev and
+  the guest build are unchanged (principle 1).
+- Must stay a plain `<script>` in the server HTML, **not** `next/script`: t.js
+  reads its site id and derives its collect endpoint via
+  `document.currentScript`, which is unreliable for dynamically injected tags.
+- t.js patches `history.pushState`/`replaceState`, so client navigation between
+  team pages is counted automatically. Traffic sources come from
+  `document.referrer` + `utm_*` + a `ref` param — never add our own reporting.
+- **Not cookieless.** It sets a 1-year `_ts_vid` visitor id (localStorage +
+  cookie) and a 30-min `_ts_sid` session cookie. That is a persistent tracking
+  identifier, so the Phase 5 consent-banner work is a prerequisite for EU/CA
+  traffic — this does NOT satisfy BUILD_PLAN's "privacy-respecting analytics"
+  line on its own.
+- Its optional Stripe conversion sync wants a Stripe **secret** key. We have no
+  Stripe checkout (support is Ko-fi), so leave it unconfigured. If that ever
+  changes, use a read-only *restricted* key, never `sk_live_…`.
+- `NEXT_PUBLIC_*` vars are baked in at **build** time, so changing them in
+  Railway needs a redeploy, not a restart.
 
 ## Stack
 - Web: Next.js (App Router) + React + TypeScript + Tailwind. Static / client-side.

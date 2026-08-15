@@ -1,23 +1,20 @@
-// Single guard for whether self-hosted analytics is wired up. Mirrors the
-// Supabase guard: when the script URL is missing the whole layer stays dormant
-// and the app ships exactly as it did before — no script tag, no requests.
+// Single guard for whether the Traffic Source tracker is wired up. Mirrors the
+// Supabase guard: when either value is missing the layer stays dormant and no
+// script tag is emitted, so local dev and the guest build are unchanged.
 //
-// Provider-agnostic on purpose. The two common Railway self-host options tag
-// the script differently, so we emit whichever attribute is configured:
-//   Umami     -> NEXT_PUBLIC_ANALYTICS_SRC=https://<instance>/script.js
-//                NEXT_PUBLIC_ANALYTICS_WEBSITE_ID=<website uuid>
-//   Plausible -> NEXT_PUBLIC_ANALYTICS_SRC=https://<instance>/js/script.js
-//                NEXT_PUBLIC_ANALYTICS_DOMAIN=didtheyhockey.com
+// Both values are client-side by nature (they end up in the page HTML) — the
+// site id is not a secret. Set them on the SITE service in Railway:
+//   NEXT_PUBLIC_ANALYTICS_SRC     = https://<instance>.up.railway.app/t.js
+//   NEXT_PUBLIC_ANALYTICS_SITE_ID = 1
 //
-// Both are cookieless and record the referrer + utm_* params automatically —
-// that is exactly what the traffic-source / top-sources report reads from, so
-// no extra per-visit call is needed on our side.
+// The tracker reads its own config off the script tag via
+// `document.currentScript` and derives its collect endpoint from `src` by
+// swapping /t.js for /api/collect — so the src must be the full public URL of
+// the tracker, not a relative path.
 
 export const ANALYTICS_SRC = process.env.NEXT_PUBLIC_ANALYTICS_SRC ?? "";
-export const ANALYTICS_WEBSITE_ID =
-  process.env.NEXT_PUBLIC_ANALYTICS_WEBSITE_ID ?? "";
-export const ANALYTICS_DOMAIN = process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN ?? "";
+export const ANALYTICS_SITE_ID = process.env.NEXT_PUBLIC_ANALYTICS_SITE_ID ?? "";
 
 export function isAnalyticsConfigured(): boolean {
-  return ANALYTICS_SRC.length > 0;
+  return ANALYTICS_SRC.length > 0 && ANALYTICS_SITE_ID.length > 0;
 }
