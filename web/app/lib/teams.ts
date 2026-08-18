@@ -20,6 +20,7 @@ export type Team = {
   primary: string;
   secondary: string;
   text: string;
+  note?: string; // optional identity note shown under the page title (e.g. Jets)
 };
 
 export const TEAMS: Record<string, Team> = {
@@ -51,7 +52,7 @@ export const TEAMS: Record<string, Team> = {
   NSH: { slug: "predators",      name: "Nashville Predators",     short: "Predators",      primary: "#FFB81C", secondary: "#041E42", text: "#111111" },
   STL: { slug: "blues",          name: "St. Louis Blues",         short: "Blues",          primary: "#002F87", secondary: "#FCB514", text: "#FFFFFF" },
   UTA: { slug: "mammoth",        name: "Utah Mammoth",            short: "Mammoth",        primary: "#010101", secondary: "#71AFE5", text: "#FFFFFF" },
-  WPG: { slug: "jets",           name: "Winnipeg Jets",           short: "Jets",           primary: "#041E42", secondary: "#AC162C", text: "#FFFFFF" },
+  WPG: { slug: "jets",           name: "Winnipeg Jets",           short: "Jets",           primary: "#041E42", secondary: "#AC162C", text: "#FFFFFF", note: "Any Winnipeg Jet counts — the original Jets (1979–96) and today’s Jets (2011–). Atlanta Thrashers don’t." },
 
   // Pacific
   ANA: { slug: "ducks",          name: "Anaheim Ducks",           short: "Ducks",          primary: "#111111", secondary: "#F47A38", text: "#FFFFFF" },

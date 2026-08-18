@@ -129,7 +129,15 @@ export function teamDecadeList(players: Player[], teamCode: string): string[] {
 export function buildEras(players: Player[], teamCode: string): Era[] {
   const decades = teamDecadeList(players, teamCode); // ascending
   const year = (d: string) => parseInt(d, 10);
-  const eras: Era[] = [{ id: "all", label: "All eras", decades: null }];
+  // "All eras" means every era THIS team existed for — not literally all of NHL
+  // history. So a "No" player only shows if they were active during one of the
+  // team's own decades. For a team with a relocation gap (the Jets: original
+  // 1979–96 + current 2011–, nothing in Winnipeg during the 2000s) this excludes
+  // players who were only around during the gap; for the Blue Jackets (2000s+)
+  // it excludes pre-2000 players who never overlapped the franchise at all.
+  const eras: Era[] = [
+    { id: "all", label: "All eras", decades: decades.length ? decades : null },
+  ];
 
   if (decades.some((d) => year(d) < 1960)) {
     const pre = decades.filter((d) => year(d) < PRE_EXPANSION_BEFORE);

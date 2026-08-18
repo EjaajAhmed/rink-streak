@@ -86,15 +86,22 @@ A player is credited for a team (`teams` / `teamGP`) only if they suited up unde
 that team's **current** city/name. Relocated/renamed/defunct clubs do NOT credit
 today's team: Atlanta Thrashers ≠ Winnipeg Jets, Quebec Nordiques ≠ Colorado
 Avalanche, Hartford Whalers ≠ Carolina Hurricanes, Minnesota North Stars ≠ Dallas
-Stars, original Jets / Phoenix / Arizona Coyotes ≠ Utah Mammoth. Those
-appearances still count toward `teamCount` (how well-travelled a player is, used
-by hardcore) but never toward the playable team set. See `etl/build_players.py`
-(`canon()` + `CANON`) and `docs/data_notes.md`.
+Stars, Phoenix / Arizona Coyotes ≠ Utah Mammoth. Those appearances still count
+toward `teamCount` (how well-travelled a player is, used by hardcore) but never
+toward the playable team set. See `etl/build_players.py` (`canon()` + `CANON`)
+and `docs/data_notes.md`.
+
+**One deliberate exception — Winnipeg.** The *original* Winnipeg Jets (1979–96)
+ARE credited to today's Jets (`WPG`), even though NHL-officially they're the
+Coyotes lineage. For this game "the Jets" means anyone who played in Winnipeg, so
+`canon()` folds `WIN→WPG`. The Atlanta Thrashers (`ATL`) stay excluded — a
+Thrashers-only player is still NOT a Jet. The Jets page shows a short note saying
+so (`note` field on the WPG entry in `web/app/lib/teams.ts`).
 
 Databank uses its own abbreviations; `canon()` folds the same-city spelling
 variants to the current NHL code (CAL→CGY, CBS→CBJ, FLO→FLA, NAS→NSH, VEG→VGK,
-WAS→WSH, AND→ANA). Everything else historical isn't a current code, so it
-resolves to "not a current team."
+WAS→WSH, AND→ANA) plus the Winnipeg exception (WIN→WPG). Everything else
+historical isn't a current code, so it resolves to "not a current team."
 
 ### Dataset entry shape
 ```json
@@ -132,7 +139,8 @@ further (below).
 
 Verify the data — it IS the game. After any build, the ETL prints spot-checks:
 Sundin/Matthews→TOR true; McDavid→EDM true, TOR false; Kessel→TOR/BOS/PIT/VGK
-true (ARI excluded, strict); Kovalchuk→NJD true, WPG false; Sakic→COL only.
+true (ARI excluded, strict); Sakic→COL only. Winnipeg: original Jets count —
+Selanne/Hawerchuk→WPG true — but Thrashers don't (Kovalchuk→NJD true, WPG false).
 
 ## Difficulty modes (per active team)
 The pool depends on a mode; both modes respect the era selector.

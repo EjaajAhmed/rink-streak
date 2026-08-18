@@ -760,16 +760,24 @@
   "id": 8462038,
   "name": "Shane Doan",
   "position": "R",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 74
+  },
   "decadesActive": [
    "1990s",
    "2000s",
    "2010s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1990s"
+   ]
+  },
   "careerGP": 1540,
-  "teamCount": 1,
+  "teamCount": 2,
   "iconic": true,
   "active": false
  },
@@ -1016,6 +1024,7 @@
    "NJD",
    "STL",
    "TOR",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
@@ -1025,6 +1034,7 @@
    "NJD": 22,
    "STL": 26,
    "TOR": 1,
+   "WPG": 232,
    "WSH": 141
   },
   "decadesActive": [
@@ -1051,6 +1061,9 @@
    ],
    "TOR": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ],
    "WSH": [
     "1990s"
@@ -1298,12 +1311,14 @@
   "teams": [
    "ANA",
    "COL",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 966,
    "COL": 78,
-   "SJS": 176
+   "SJS": 176,
+   "WPG": 231
   },
   "decadesActive": [
    "1990s",
@@ -1321,6 +1336,9 @@
    ],
    "SJS": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 1451,
@@ -2144,11 +2162,13 @@
   "position": "D",
   "teams": [
    "BUF",
-   "DAL"
+   "DAL",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 212,
-   "DAL": 62
+   "DAL": 62,
+   "WPG": 547
   },
   "decadesActive": [
    "1980s",
@@ -2161,10 +2181,14 @@
    ],
    "DAL": [
     "2000s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 1372,
-  "teamCount": 3,
+  "teamCount": 4,
   "iconic": true,
   "active": false
  },
@@ -5596,10 +5620,12 @@
   "name": "Keith Tkachuk",
   "position": "L",
   "teams": [
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
-   "STL": 543
+   "STL": 543,
+   "WPG": 308
   },
   "decadesActive": [
    "1990s",
@@ -5608,10 +5634,13 @@
   "teamDecades": {
    "STL": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 1201,
-  "teamCount": 3,
+  "teamCount": 4,
   "iconic": true,
   "active": false
  },
@@ -5702,12 +5731,14 @@
   "teams": [
    "LAK",
    "PHI",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "LAK": 8,
    "PHI": 39,
-   "VAN": 409
+   "VAN": 409,
+   "WPG": 390
   },
   "decadesActive": [
    "1980s",
@@ -5722,6 +5753,9 @@
    ],
    "VAN": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 1195,
@@ -5988,12 +6022,14 @@
   "teams": [
    "BUF",
    "PHI",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 342,
    "PHI": 67,
-   "STL": 66
+   "STL": 66,
+   "WPG": 713
   },
   "decadesActive": [
    "1980s",
@@ -6008,6 +6044,9 @@
    ],
    "STL": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 1188,
@@ -6936,10 +6975,12 @@
   "name": "Kris Draper",
   "position": "C",
   "teams": [
-   "DET"
+   "DET",
+   "WPG"
   ],
   "teamGP": {
-   "DET": 1137
+   "DET": 1137,
+   "WPG": 20
   },
   "decadesActive": [
    "1990s",
@@ -6951,6 +6992,9 @@
     "1990s",
     "2000s",
     "2010s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 1157,
@@ -7927,13 +7971,15 @@
    "BUF",
    "DAL",
    "FLA",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 310,
    "DAL": 329,
    "FLA": 191,
-   "PIT": 204
+   "PIT": 204,
+   "WPG": 102
   },
   "decadesActive": [
    "1990s",
@@ -7951,6 +7997,9 @@
     "1990s"
    ],
    "PIT": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -8108,13 +8157,15 @@
    "BOS",
    "NJD",
    "STL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 136,
    "NJD": 20,
    "STL": 52,
-   "TOR": 446
+   "TOR": 446,
+   "WPG": 475
   },
   "decadesActive": [
    "1980s",
@@ -8131,6 +8182,10 @@
     "1990s"
    ],
    "TOR": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -9589,14 +9644,16 @@
    "DAL",
    "EDM",
    "MTL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 431,
    "DAL": 60,
    "EDM": 219,
    "MTL": 101,
-   "TOR": 87
+   "TOR": 87,
+   "WPG": 139
   },
   "decadesActive": [
    "1980s",
@@ -9620,10 +9677,13 @@
    ],
    "TOR": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 1103,
-  "teamCount": 6,
+  "teamCount": 7,
   "iconic": false,
   "active": false
  },
@@ -11507,10 +11567,12 @@
   "name": "Bobby Hull",
   "position": "L",
   "teams": [
-   "CHI"
+   "CHI",
+   "WPG"
   ],
   "teamGP": {
-   "CHI": 1036
+   "CHI": 1036,
+   "WPG": 18
   },
   "decadesActive": [
    "1950s",
@@ -11521,6 +11583,9 @@
    "CHI": [
     "1950s",
     "1960s",
+    "1970s"
+   ],
+   "WPG": [
     "1970s"
    ]
   },
@@ -12489,11 +12554,13 @@
   "position": "D",
   "teams": [
    "PIT",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "PIT": 397,
-   "TOR": 94
+   "TOR": 94,
+   "WPG": 564
   },
   "decadesActive": [
    "1970s",
@@ -12507,6 +12574,10 @@
    ],
    "TOR": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 1055,
@@ -13433,10 +13504,12 @@
   "name": "Serge Savard",
   "position": "D",
   "teams": [
-   "MTL"
+   "MTL",
+   "WPG"
   ],
   "teamGP": {
-   "MTL": 917
+   "MTL": 917,
+   "WPG": 123
   },
   "decadesActive": [
    "1960s",
@@ -13447,6 +13520,9 @@
    "MTL": [
     "1960s",
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -13603,14 +13679,16 @@
    "CHI",
    "MTL",
    "NYR",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 158,
    "CHI": 72,
    "MTL": 507,
    "NYR": 75,
-   "STL": 101
+   "STL": 101,
+   "WPG": 124
   },
   "decadesActive": [
    "1980s",
@@ -13633,6 +13711,9 @@
     "1990s"
    ],
    "STL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -14119,14 +14200,16 @@
    "LAK",
    "NYR",
    "PIT",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 322,
    "LAK": 67,
    "NYR": 103,
    "PIT": 68,
-   "TOR": 257
+   "TOR": 257,
+   "WPG": 214
   },
   "decadesActive": [
    "1980s",
@@ -14148,6 +14231,9 @@
    ],
    "TOR": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -15109,13 +15195,15 @@
    "ANA",
    "DET",
    "EDM",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 244,
    "DET": 47,
    "EDM": 108,
-   "PIT": 127
+   "PIT": 127,
+   "WPG": 496
   },
   "decadesActive": [
    "1980s",
@@ -15134,6 +15222,10 @@
     "1990s"
    ],
    "PIT": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -15214,11 +15306,13 @@
   "position": "R",
   "teams": [
    "NYR",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "NYR": 82,
-   "TOR": 777
+   "TOR": 777,
+   "WPG": 161
   },
   "decadesActive": [
    "1980s",
@@ -15233,6 +15327,9 @@
     "1980s",
     "1990s",
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 1020,
@@ -15916,11 +16013,13 @@
   "position": "R",
   "teams": [
    "DET",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "DET": 184,
-   "STL": 443
+   "STL": 443,
+   "WPG": 127
   },
   "decadesActive": [
    "1990s",
@@ -15933,10 +16032,13 @@
    ],
    "STL": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 1009,
-  "teamCount": 3,
+  "teamCount": 4,
   "iconic": false,
   "active": false
  },
@@ -15948,12 +16050,14 @@
    "BOS",
    "CHI",
    "STL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "BOS": 128,
    "CHI": 69,
    "STL": 78,
+   "WPG": 230,
    "WSH": 504
   },
   "decadesActive": [
@@ -15971,6 +16075,10 @@
    ],
    "STL": [
     "1990s"
+   ],
+   "WPG": [
+    "1970s",
+    "1980s"
    ],
    "WSH": [
     "1980s"
@@ -16076,13 +16184,15 @@
    "EDM",
    "NJD",
    "OTT",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "EDM": 73,
    "NJD": 153,
    "OTT": 70,
-   "TOR": 187
+   "TOR": 187,
+   "WPG": 526
   },
   "decadesActive": [
    "1970s",
@@ -16101,6 +16211,9 @@
    ],
    "TOR": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -16859,14 +16972,16 @@
    "CGY",
    "DET",
    "NJD",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 87,
    "CGY": 32,
    "DET": 108,
    "NJD": 76,
-   "VAN": 124
+   "VAN": 124,
+   "WPG": 222
   },
   "decadesActive": [
    "1970s",
@@ -16889,6 +17004,10 @@
    "VAN": [
     "1970s",
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 998,
@@ -17031,12 +17150,14 @@
   "teams": [
    "MTL",
    "NYR",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 112,
    "NYR": 326,
-   "TOR": 92
+   "TOR": 92,
+   "WPG": 235
   },
   "decadesActive": [
    "1970s",
@@ -17052,6 +17173,10 @@
     "1980s"
    ],
    "TOR": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -19751,12 +19876,14 @@
   "teams": [
    "NYR",
    "STL",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "NYR": 166,
    "STL": 81,
-   "VAN": 50
+   "VAN": 50,
+   "WPG": 255
   },
   "decadesActive": [
    "1970s",
@@ -19773,6 +19900,10 @@
    ],
    "VAN": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 955,
@@ -20330,13 +20461,22 @@
   "id": 700005082,
   "name": "Thomas Steen",
   "position": "C",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 950
+  },
   "decadesActive": [
    "1980s",
    "1990s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s",
+    "1990s"
+   ]
+  },
   "careerGP": 950,
   "teamCount": 1,
   "iconic": false,
@@ -21769,7 +21909,8 @@
    "EDM",
    "SJS",
    "TBL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CGY": 37,
@@ -21778,7 +21919,8 @@
    "EDM": 216,
    "SJS": 334,
    "TBL": 22,
-   "TOR": 75
+   "TOR": 75,
+   "WPG": 37
   },
   "decadesActive": [
    "1980s",
@@ -21807,6 +21949,10 @@
    ],
    "TOR": [
     "2000s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 926,
@@ -22197,12 +22343,14 @@
   "teams": [
    "DET",
    "NYR",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "DET": 160,
    "NYR": 253,
-   "TOR": 426
+   "TOR": 426,
+   "WPG": 80
   },
   "decadesActive": [
    "1980s",
@@ -22218,6 +22366,9 @@
    ],
    "TOR": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -22512,13 +22663,15 @@
    "CHI",
    "COL",
    "OTT",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 688,
    "COL": 63,
    "OTT": 48,
-   "PIT": 13
+   "PIT": 13,
+   "WPG": 103
   },
   "decadesActive": [
    "1980s",
@@ -22536,6 +22689,9 @@
     "1990s"
    ],
    "PIT": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -24036,12 +24192,14 @@
    "DET",
    "MTL",
    "TOR",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "DET": 20,
    "MTL": 141,
    "TOR": 59,
+   "WPG": 160,
    "WSH": 230
   },
   "decadesActive": [
@@ -24056,6 +24214,9 @@
     "1980s"
    ],
    "TOR": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ],
    "WSH": [
@@ -25755,6 +25916,7 @@
    "NJD",
    "NSH",
    "PIT",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
@@ -25763,6 +25925,7 @@
    "NJD": 196,
    "NSH": 61,
    "PIT": 50,
+   "WPG": 73,
    "WSH": 30
   },
   "decadesActive": [
@@ -25786,12 +25949,15 @@
    "PIT": [
     "1990s"
    ],
+   "WPG": [
+    "1990s"
+   ],
    "WSH": [
     "1990s"
    ]
   },
   "careerGP": 880,
-  "teamCount": 8,
+  "teamCount": 9,
   "iconic": false,
   "active": false
  },
@@ -27460,13 +27626,15 @@
    "BUF",
    "CHI",
    "OTT",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 35,
    "CHI": 16,
    "OTT": 276,
-   "PIT": 295
+   "PIT": 295,
+   "WPG": 28
   },
   "decadesActive": [
    "1980s",
@@ -27484,6 +27652,9 @@
     "1990s"
    ],
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -28470,10 +28641,12 @@
   "position": "L",
   "teams": [
    "CHI",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "CHI": 70,
+   "WPG": 293,
    "WSH": 266
   },
   "decadesActive": [
@@ -28483,6 +28656,9 @@
   "teamDecades": {
    "CHI": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ],
    "WSH": [
     "1990s"
@@ -28650,13 +28826,15 @@
    "CHI",
    "DET",
    "NYR",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 13,
    "DET": 58,
    "NYR": 249,
-   "TOR": 188
+   "TOR": 188,
+   "WPG": 260
   },
   "decadesActive": [
    "1980s",
@@ -28676,10 +28854,13 @@
    ],
    "TOR": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 849,
-  "teamCount": 5,
+  "teamCount": 6,
   "iconic": false,
   "active": false
  },
@@ -29205,10 +29386,12 @@
   "name": "Doug Smail",
   "position": "L",
   "teams": [
-   "OTT"
+   "OTT",
+   "WPG"
   ],
   "teamGP": {
-   "OTT": 51
+   "OTT": 51,
+   "WPG": 691
   },
   "decadesActive": [
    "1980s",
@@ -29216,6 +29399,10 @@
   ],
   "teamDecades": {
    "OTT": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -30347,12 +30534,14 @@
   "teams": [
    "NYI",
    "NYR",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "NYI": 81,
    "NYR": 307,
-   "SJS": 72
+   "SJS": 72,
+   "WPG": 372
   },
   "decadesActive": [
    "1980s",
@@ -30368,6 +30557,9 @@
    ],
    "SJS": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 832,
@@ -30463,11 +30655,13 @@
   "position": "C",
   "teams": [
    "MTL",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 48,
-   "STL": 248
+   "STL": 248,
+   "WPG": 536
   },
   "decadesActive": [
    "1970s",
@@ -30481,6 +30675,10 @@
    "STL": [
     "1980s",
     "1990s"
+   ],
+   "WPG": [
+    "1970s",
+    "1980s"
    ]
   },
   "careerGP": 832,
@@ -31935,7 +32133,8 @@
    "DAL",
    "EDM",
    "PIT",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 160,
@@ -31943,7 +32142,8 @@
    "DAL": 40,
    "EDM": 493,
    "PIT": 64,
-   "TOR": 19
+   "TOR": 19,
+   "WPG": 25
   },
   "decadesActive": [
    "1980s",
@@ -31968,6 +32168,9 @@
    ],
    "TOR": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 819,
@@ -32673,12 +32876,14 @@
   "teams": [
    "BOS",
    "CHI",
-   "PHI"
+   "PHI",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 24,
    "CHI": 528,
-   "PHI": 20
+   "PHI": 20,
+   "WPG": 235
   },
   "decadesActive": [
    "1990s",
@@ -32694,6 +32899,9 @@
    ],
    "PHI": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 807,
@@ -33605,12 +33813,14 @@
   "teams": [
    "CHI",
    "EDM",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 206,
    "EDM": 117,
-   "TBL": 192
+   "TBL": 192,
+   "WPG": 79
   },
   "decadesActive": [
    "1990s",
@@ -33628,10 +33838,13 @@
    ],
    "TBL": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 799,
-  "teamCount": 4,
+  "teamCount": 5,
   "iconic": false,
   "active": false
  },
@@ -34280,12 +34493,14 @@
   "teams": [
    "CHI",
    "STL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 192,
    "STL": 147,
-   "TOR": 297
+   "TOR": 297,
+   "WPG": 118
   },
   "decadesActive": [
    "1990s",
@@ -34301,10 +34516,13 @@
    "TOR": [
     "1990s",
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 795,
-  "teamCount": 4,
+  "teamCount": 5,
   "iconic": false,
   "active": false
  },
@@ -35580,14 +35798,16 @@
    "NYR",
    "PIT",
    "STL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 53,
    "NYR": 75,
    "PIT": 82,
    "STL": 336,
-   "TOR": 111
+   "TOR": 111,
+   "WPG": 93
   },
   "decadesActive": [
    "1990s",
@@ -35609,10 +35829,13 @@
    ],
    "TOR": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 783,
-  "teamCount": 6,
+  "teamCount": 7,
   "iconic": false,
   "active": false
  },
@@ -37025,14 +37248,16 @@
    "CHI",
    "LAK",
    "OTT",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "CAR": 116,
    "CHI": 27,
    "LAK": 124,
    "OTT": 3,
-   "STL": 165
+   "STL": 165,
+   "WPG": 131
   },
   "decadesActive": [
    "1990s",
@@ -37053,6 +37278,9 @@
     "1990s"
    ],
    "STL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -37982,14 +38210,16 @@
    "NYI",
    "SJS",
    "STL",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 262,
    "NYI": 18,
    "SJS": 98,
    "STL": 186,
-   "TBL": 38
+   "TBL": 38,
+   "WPG": 13
   },
   "decadesActive": [
    "1980s",
@@ -38011,10 +38241,13 @@
    ],
    "TBL": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 760,
-  "teamCount": 6,
+  "teamCount": 7,
   "iconic": false,
   "active": false
  },
@@ -38972,11 +39205,13 @@
   "position": "L",
   "teams": [
    "NJD",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "NJD": 581,
-   "TOR": 27
+   "TOR": 27,
+   "WPG": 25
   },
   "decadesActive": [
    "1980s",
@@ -38987,6 +39222,9 @@
     "1980s"
    ],
    "TOR": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -39285,11 +39523,13 @@
   "position": "L",
   "teams": [
    "EDM",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "EDM": 653,
-   "PIT": 59
+   "PIT": 59,
+   "WPG": 34
   },
   "decadesActive": [
    "1970s",
@@ -39301,6 +39541,9 @@
     "1980s"
    ],
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -39985,10 +40228,12 @@
   "name": "Tim Watters",
   "position": "D",
   "teams": [
-   "LAK"
+   "LAK",
+   "WPG"
   ],
   "teamGP": {
-   "LAK": 303
+   "LAK": 303,
+   "WPG": 438
   },
   "decadesActive": [
    "1980s",
@@ -39998,6 +40243,9 @@
    "LAK": [
     "1980s",
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 741,
@@ -40081,6 +40329,7 @@
    "MTL",
    "NYR",
    "TBL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
@@ -40090,6 +40339,7 @@
    "MTL": 123,
    "NYR": 39,
    "TBL": 115,
+   "WPG": 176,
    "WSH": 3
   },
   "decadesActive": [
@@ -40114,6 +40364,9 @@
     "2000s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ],
    "WSH": [
@@ -41114,11 +41367,13 @@
   "position": "L",
   "teams": [
    "BOS",
-   "BUF"
+   "BUF",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 29,
-   "BUF": 295
+   "BUF": 295,
+   "WPG": 406
   },
   "decadesActive": [
    "1980s",
@@ -41130,6 +41385,10 @@
    ],
    "BUF": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 730,
@@ -42656,11 +42915,13 @@
   "position": "R",
   "teams": [
    "DET",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "DET": 76,
-   "STL": 116
+   "STL": 116,
+   "WPG": 527
   },
   "decadesActive": [
    "1980s",
@@ -42673,6 +42934,9 @@
    "STL": [
     "1980s",
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 719,
@@ -42792,13 +43056,15 @@
    "BUF",
    "EDM",
    "LAK",
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 144,
    "EDM": 40,
    "LAK": 345,
-   "NYR": 16
+   "NYR": 16,
+   "WPG": 172
   },
   "decadesActive": [
    "1980s",
@@ -42817,6 +43083,9 @@
    ],
    "NYR": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 717,
@@ -42891,12 +43160,14 @@
   "teams": [
    "CHI",
    "EDM",
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 220,
    "EDM": 320,
-   "NYR": 111
+   "NYR": 111,
+   "WPG": 65
   },
   "decadesActive": [
    "1990s",
@@ -42912,6 +43183,9 @@
    ],
    "NYR": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 716,
@@ -43033,14 +43307,16 @@
    "CHI",
    "EDM",
    "MTL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 45,
    "CHI": 86,
    "EDM": 87,
    "MTL": 214,
-   "TOR": 219
+   "TOR": 219,
+   "WPG": 29
   },
   "decadesActive": [
    "1990s",
@@ -43062,10 +43338,13 @@
    ],
    "TOR": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 714,
-  "teamCount": 6,
+  "teamCount": 7,
   "iconic": false,
   "active": false
  },
@@ -43247,13 +43526,15 @@
    "ANA",
    "CAR",
    "LAK",
-   "NJD"
+   "NJD",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 324,
    "CAR": 72,
    "LAK": 26,
-   "NJD": 50
+   "NJD": 50,
+   "WPG": 31
   },
   "decadesActive": [
    "1990s",
@@ -43272,10 +43553,13 @@
    ],
    "NJD": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 713,
-  "teamCount": 5,
+  "teamCount": 6,
   "iconic": false,
   "active": false
  },
@@ -43819,13 +44103,15 @@
    "NYI",
    "NYR",
    "PHI",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "NYI": 87,
    "NYR": 65,
    "PHI": 55,
-   "STL": 371
+   "STL": 371,
+   "WPG": 65
   },
   "decadesActive": [
    "1980s",
@@ -43846,10 +44132,13 @@
    "STL": [
     "1990s",
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 708,
-  "teamCount": 5,
+  "teamCount": 6,
   "iconic": false,
   "active": false
  },
@@ -45740,14 +46029,16 @@
    "EDM",
    "NYI",
    "PIT",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 125,
    "EDM": 69,
    "NYI": 34,
    "PIT": 136,
-   "VAN": 18
+   "VAN": 18,
+   "WPG": 58
   },
   "decadesActive": [
    "1980s",
@@ -45770,10 +46061,13 @@
    ],
    "VAN": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 697,
-  "teamCount": 7,
+  "teamCount": 8,
   "iconic": false,
   "active": false
  },
@@ -46697,9 +46991,11 @@
   "name": "Paul MacDermid",
   "position": "R",
   "teams": [
+   "WPG",
    "WSH"
   ],
   "teamGP": {
+   "WPG": 172,
    "WSH": 87
   },
   "decadesActive": [
@@ -46707,6 +47003,10 @@
    "1990s"
   ],
   "teamDecades": {
+   "WPG": [
+    "1980s",
+    "1990s"
+   ],
    "WSH": [
     "1990s"
    ]
@@ -46968,6 +47268,7 @@
    "MTL",
    "SJS",
    "STL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
@@ -46975,6 +47276,7 @@
    "MTL": 197,
    "SJS": 23,
    "STL": 114,
+   "WPG": 79,
    "WSH": 132
   },
   "decadesActive": [
@@ -46993,6 +47295,9 @@
    ],
    "STL": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ],
    "WSH": [
     "1990s"
@@ -49234,11 +49539,13 @@
   "position": "C",
   "teams": [
    "MTL",
-   "NYI"
+   "NYI",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 12,
-   "NYI": 250
+   "NYI": 250,
+   "WPG": 85
   },
   "decadesActive": [
    "1960s",
@@ -49251,6 +49558,10 @@
    ],
    "NYI": [
     "1970s"
+   ],
+   "WPG": [
+    "1970s",
+    "1980s"
    ]
   },
   "careerGP": 666,
@@ -50800,12 +51111,14 @@
   "teams": [
    "EDM",
    "PHI",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "EDM": 25,
    "PHI": 35,
-   "PIT": 232
+   "PIT": 232,
+   "WPG": 318
   },
   "decadesActive": [
    "1980s",
@@ -50821,6 +51134,10 @@
    ],
    "PIT": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 656,
@@ -50902,10 +51219,12 @@
   "name": "Dan Bouchard",
   "position": "G",
   "teams": [
-   "CGY"
+   "CGY",
+   "WPG"
   ],
   "teamGP": {
-   "CGY": 14
+   "CGY": 14,
+   "WPG": 32
   },
   "decadesActive": [
    "1970s",
@@ -50913,6 +51232,9 @@
   ],
   "teamDecades": {
    "CGY": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -51844,14 +52166,16 @@
    "CGY",
    "MTL",
    "PHI",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 12,
    "CGY": 28,
    "MTL": 26,
    "PHI": 60,
-   "STL": 330
+   "STL": 330,
+   "WPG": 114
   },
   "decadesActive": [
    "1980s",
@@ -51872,6 +52196,10 @@
    ],
    "STL": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 650,
@@ -52246,7 +52574,8 @@
    "EDM",
    "OTT",
    "PIT",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 305,
@@ -52255,7 +52584,8 @@
    "EDM": 30,
    "OTT": 1,
    "PIT": 75,
-   "SJS": 16
+   "SJS": 16,
+   "WPG": 56
   },
   "decadesActive": [
    "1980s",
@@ -52284,6 +52614,9 @@
    ],
    "SJS": [
     "2000s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 646,
@@ -53205,13 +53538,15 @@
    "NYR",
    "STL",
    "TOR",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "NYR": 112,
    "STL": 155,
    "TOR": 204,
-   "VAN": 128
+   "VAN": 128,
+   "WPG": 42
   },
   "decadesActive": [
    "1970s",
@@ -53229,6 +53564,9 @@
    ],
    "VAN": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -53802,13 +54140,15 @@
    "NSH",
    "NYR",
    "SJS",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "NSH": 49,
    "NYR": 325,
    "SJS": 74,
-   "STL": 62
+   "STL": 62,
+   "WPG": 59
   },
   "decadesActive": [
    "1980s",
@@ -53826,6 +54166,9 @@
     "1990s"
    ],
    "STL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -55091,10 +55434,12 @@
   "name": "Tim Young",
   "position": "C",
   "teams": [
-   "PHI"
+   "PHI",
+   "WPG"
   ],
   "teamGP": {
-   "PHI": 20
+   "PHI": 20,
+   "WPG": 44
   },
   "decadesActive": [
    "1970s",
@@ -55102,6 +55447,9 @@
   ],
   "teamDecades": {
    "PHI": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -57741,13 +58089,15 @@
    "DET",
    "EDM",
    "PHI",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "DET": 2,
    "EDM": 1,
    "PHI": 463,
-   "PIT": 135
+   "PIT": 135,
+   "WPG": 9
   },
   "decadesActive": [
    "1970s",
@@ -57765,6 +58115,9 @@
    ],
    "PIT": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 610,
@@ -57906,12 +58259,14 @@
   "teams": [
    "OTT",
    "PIT",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "OTT": 114,
    "PIT": 41,
-   "VAN": 45
+   "VAN": 45,
+   "WPG": 408
   },
   "decadesActive": [
    "1980s",
@@ -57927,6 +58282,9 @@
    "VAN": [
     "1980s",
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 608,
@@ -58051,11 +58409,13 @@
   "position": "L",
   "teams": [
    "MTL",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 40,
-   "STL": 396
+   "STL": 396,
+   "WPG": 172
   },
   "decadesActive": [
    "1970s",
@@ -58067,6 +58427,9 @@
    ],
    "STL": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -59336,13 +59699,15 @@
    "CGY",
    "OTT",
    "PIT",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "CGY": 63,
    "OTT": 4,
    "PIT": 57,
-   "SJS": 75
+   "SJS": 75,
+   "WPG": 399
   },
   "decadesActive": [
    "1980s",
@@ -59361,6 +59726,9 @@
    ],
    "SJS": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 598,
@@ -59777,10 +60145,12 @@
   "name": "Ray Neufeld",
   "position": "R",
   "teams": [
-   "BOS"
+   "BOS",
+   "WPG"
   ],
   "teamGP": {
-   "BOS": 15
+   "BOS": 15,
+   "WPG": 249
   },
   "decadesActive": [
    "1970s",
@@ -59788,6 +60158,9 @@
   ],
   "teamDecades": {
    "BOS": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -60638,13 +61011,15 @@
    "DET",
    "EDM",
    "PIT",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "DET": 64,
    "EDM": 428,
    "PIT": 72,
-   "TOR": 18
+   "TOR": 18,
+   "WPG": 6
   },
   "decadesActive": [
    "1980s",
@@ -60662,6 +61037,9 @@
     "1980s"
    ],
    "TOR": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -61270,11 +61648,13 @@
   "position": "L",
   "teams": [
    "BOS",
-   "LAK"
+   "LAK",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 36,
-   "LAK": 115
+   "LAK": 115,
+   "WPG": 431
   },
   "decadesActive": [
    "1970s",
@@ -61285,6 +61665,10 @@
     "1980s"
    ],
    "LAK": [
+    "1980s"
+   ],
+   "WPG": [
+    "1970s",
     "1980s"
    ]
   },
@@ -61357,11 +61741,13 @@
   "position": "R",
   "teams": [
    "EDM",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "EDM": 163,
-   "PIT": 131
+   "PIT": 131,
+   "WPG": 288
   },
   "decadesActive": [
    "1970s",
@@ -61372,6 +61758,10 @@
     "1980s"
    ],
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
+    "1970s",
     "1980s"
    ]
   },
@@ -64756,16 +65146,21 @@
   "name": "Hilliard Graves",
   "position": "R",
   "teams": [
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
-   "VAN": 196
+   "VAN": 196,
+   "WPG": 35
   },
   "decadesActive": [
    "1970s"
   ],
   "teamDecades": {
    "VAN": [
+    "1970s"
+   ],
+   "WPG": [
     "1970s"
    ]
   },
@@ -64869,12 +65264,14 @@
   "teams": [
    "BOS",
    "TOR",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 39,
    "TOR": 378,
-   "VAN": 63
+   "VAN": 63,
+   "WPG": 57
   },
   "decadesActive": [
    "1970s",
@@ -64890,6 +65287,9 @@
    ],
    "VAN": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 555,
@@ -64983,11 +65383,13 @@
   "position": "D",
   "teams": [
    "BUF",
-   "DAL"
+   "DAL",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 134,
-   "DAL": 34
+   "DAL": 34,
+   "WPG": 173
   },
   "decadesActive": [
    "1980s",
@@ -64998,6 +65400,10 @@
     "1990s"
    ],
    "DAL": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -66895,13 +67301,15 @@
    "BUF",
    "CGY",
    "MTL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 255,
    "CGY": 27,
    "MTL": 7,
-   "TOR": 98
+   "TOR": 98,
+   "WPG": 108
   },
   "decadesActive": [
    "1980s",
@@ -66920,6 +67328,9 @@
    ],
    "TOR": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -67668,12 +68079,14 @@
   "teams": [
    "BOS",
    "SJS",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 37,
    "SJS": 17,
-   "VAN": 472
+   "VAN": 472,
+   "WPG": 15
   },
   "decadesActive": [
    "1980s",
@@ -67688,6 +68101,9 @@
    ],
    "VAN": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -69040,12 +69456,14 @@
    "CHI",
    "TOR",
    "VAN",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "CHI": 51,
    "TOR": 5,
    "VAN": 189,
+   "WPG": 20,
    "WSH": 17
   },
   "decadesActive": [
@@ -69060,6 +69478,9 @@
     "1960s"
    ],
    "VAN": [
+    "1970s"
+   ],
+   "WPG": [
     "1970s"
    ],
    "WSH": [
@@ -69109,13 +69530,15 @@
    "CHI",
    "DET",
    "NJD",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 26,
    "DET": 210,
    "NJD": 21,
-   "TBL": 215
+   "TBL": 215,
+   "WPG": 60
   },
   "decadesActive": [
    "1980s",
@@ -69133,6 +69556,9 @@
     "1990s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -69183,11 +69609,13 @@
   "teams": [
    "LAK",
    "PHI",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "LAK": 162,
    "PHI": 79,
+   "WPG": 50,
    "WSH": 240
   },
   "decadesActive": [
@@ -69199,6 +69627,9 @@
     "1990s"
    ],
    "PHI": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ],
    "WSH": [
@@ -69762,13 +70193,15 @@
    "BOS",
    "BUF",
    "CHI",
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 96,
    "BUF": 308,
    "CHI": 14,
-   "NYR": 80
+   "NYR": 80,
+   "WPG": 28
   },
   "decadesActive": [
    "1990s",
@@ -69786,6 +70219,9 @@
    ],
    "NYR": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 526,
@@ -70100,13 +70536,15 @@
    "BOS",
    "DET",
    "STL",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 76,
    "DET": 122,
    "STL": 61,
-   "VAN": 124
+   "VAN": 124,
+   "WPG": 141
   },
   "decadesActive": [
    "1980s"
@@ -70122,6 +70560,9 @@
     "1980s"
    ],
    "VAN": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -70805,11 +71246,13 @@
   "position": "L",
   "teams": [
    "BUF",
-   "LAK"
+   "LAK",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 365,
-   "LAK": 11
+   "LAK": 11,
+   "WPG": 143
   },
   "decadesActive": [
    "1980s"
@@ -70819,6 +71262,9 @@
     "1980s"
    ],
    "LAK": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -72486,10 +72932,12 @@
   "name": "Darrin Shannon",
   "position": "L",
   "teams": [
-   "BUF"
+   "BUF",
+   "WPG"
   ],
   "teamGP": {
-   "BUF": 55
+   "BUF": 55,
+   "WPG": 311
   },
   "decadesActive": [
    "1980s",
@@ -72499,10 +72947,13 @@
    "BUF": [
     "1980s",
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 506,
-  "teamCount": 2,
+  "teamCount": 3,
   "iconic": false,
   "active": false
  },
@@ -72547,11 +72998,13 @@
   "teams": [
    "OTT",
    "TBL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "OTT": 70,
    "TBL": 63,
+   "WPG": 289,
    "WSH": 84
   },
   "decadesActive": [
@@ -72563,6 +73016,10 @@
     "1990s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ],
    "WSH": [
@@ -73248,14 +73705,16 @@
    "NYI",
    "OTT",
    "PIT",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 5,
    "NYI": 58,
    "OTT": 110,
    "PIT": 108,
-   "TOR": 77
+   "TOR": 77,
+   "WPG": 143
   },
   "decadesActive": [
    "1980s",
@@ -73276,6 +73735,10 @@
     "1990s"
    ],
    "TOR": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -73472,13 +73935,15 @@
    "EDM",
    "NYR",
    "OTT",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "EDM": 79,
    "NYR": 66,
    "OTT": 161,
-   "PIT": 45
+   "PIT": 45,
+   "WPG": 39
   },
   "decadesActive": [
    "1980s",
@@ -73497,10 +73962,13 @@
    ],
    "PIT": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 500,
-  "teamCount": 6,
+  "teamCount": 7,
   "iconic": false,
   "active": false
  },
@@ -78726,13 +79194,15 @@
    "CBJ",
    "CHI",
    "NJD",
-   "NYI"
+   "NYI",
+   "WPG"
   ],
   "teamGP": {
    "CBJ": 132,
    "CHI": 51,
    "NJD": 4,
-   "NYI": 5
+   "NYI": 5,
+   "WPG": 51
   },
   "decadesActive": [
    "1990s",
@@ -78750,10 +79220,13 @@
    ],
    "NYI": [
     "2000s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 463,
-  "teamCount": 5,
+  "teamCount": 6,
   "iconic": false,
   "active": false
  },
@@ -79232,12 +79705,14 @@
   "teams": [
    "CHI",
    "PIT",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 72,
    "PIT": 122,
-   "SJS": 119
+   "SJS": 119,
+   "WPG": 61
   },
   "decadesActive": [
    "1980s",
@@ -79251,6 +79726,9 @@
     "1990s"
    ],
    "SJS": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -79675,14 +80153,16 @@
    "LAK",
    "NYR",
    "PIT",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "FLA": 20,
    "LAK": 33,
    "NYR": 73,
    "PIT": 133,
-   "TBL": 11
+   "TBL": 11,
+   "WPG": 185
   },
   "decadesActive": [
    "1980s",
@@ -79703,6 +80183,10 @@
     "1990s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -79858,10 +80342,12 @@
   "name": "Phil Sykes",
   "position": "L",
   "teams": [
-   "LAK"
+   "LAK",
+   "WPG"
   ],
   "teamGP": {
-   "LAK": 286
+   "LAK": 286,
+   "WPG": 170
   },
   "decadesActive": [
    "1980s",
@@ -79870,6 +80356,10 @@
   "teamDecades": {
    "LAK": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 456,
@@ -80823,11 +81313,13 @@
   "position": "D",
   "teams": [
    "PIT",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "PIT": 167,
-   "TBL": 61
+   "TBL": 61,
+   "WPG": 207
   },
   "decadesActive": [
    "1980s",
@@ -80839,6 +81331,9 @@
    ],
    "TBL": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 451,
@@ -81724,13 +82219,15 @@
    "BUF",
    "DET",
    "EDM",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 9,
    "DET": 13,
    "EDM": 74,
-   "VAN": 39
+   "VAN": 39,
+   "WPG": 281
   },
   "decadesActive": [
    "1980s",
@@ -81749,10 +82246,14 @@
    ],
    "VAN": [
     "2000s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 446,
-  "teamCount": 5,
+  "teamCount": 6,
   "iconic": false,
   "active": false
  },
@@ -86725,14 +87226,16 @@
    "LAK",
    "NYR",
    "SJS",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CGY": 31,
    "LAK": 92,
    "NYR": 8,
    "SJS": 60,
-   "TOR": 30
+   "TOR": 30,
+   "WPG": 156
   },
   "decadesActive": [
    "1980s",
@@ -86752,6 +87255,10 @@
     "1990s"
    ],
    "TOR": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -89070,12 +89577,14 @@
   "teams": [
    "BUF",
    "NYR",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 225,
    "NYR": 39,
-   "TBL": 58
+   "TBL": 58,
+   "WPG": 75
   },
   "decadesActive": [
    "1980s",
@@ -89090,6 +89599,9 @@
     "1990s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -89983,11 +90495,13 @@
   "position": "R",
   "teams": [
    "DET",
-   "NYI"
+   "NYI",
+   "WPG"
   ],
   "teamGP": {
    "DET": 58,
-   "NYI": 326
+   "NYI": 326,
+   "WPG": 7
   },
   "decadesActive": [
    "1980s",
@@ -89999,6 +90513,9 @@
    ],
    "NYI": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -90443,12 +90960,14 @@
    "BOS",
    "LAK",
    "PHI",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "BOS": 8,
    "LAK": 129,
    "PHI": 123,
+   "WPG": 49,
    "WSH": 79
   },
   "decadesActive": [
@@ -90463,6 +90982,9 @@
     "1970s"
    ],
    "PHI": [
+    "1970s"
+   ],
+   "WPG": [
     "1970s"
    ],
    "WSH": [
@@ -90956,13 +91478,15 @@
    "BOS",
    "NJD",
    "PHI",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 177,
    "NJD": 96,
    "PHI": 3,
-   "PIT": 95
+   "PIT": 95,
+   "WPG": 14
   },
   "decadesActive": [
    "1980s",
@@ -90981,6 +91505,9 @@
    ],
    "PIT": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 385,
@@ -94845,12 +95372,14 @@
   "teams": [
    "NYR",
    "STL",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "NYR": 68,
    "STL": 78,
-   "TBL": 213
+   "TBL": 213,
+   "WPG": 5
   },
   "decadesActive": [
    "1980s",
@@ -94864,6 +95393,9 @@
     "1990s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -95466,12 +95998,14 @@
   "teams": [
    "BOS",
    "BUF",
-   "NYI"
+   "NYI",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 191,
    "BUF": 76,
-   "NYI": 51
+   "NYI": 51,
+   "WPG": 39
   },
   "decadesActive": [
    "1980s",
@@ -95486,6 +96020,9 @@
    ],
    "NYI": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 357,
@@ -95499,11 +96036,13 @@
   "position": "G",
   "teams": [
    "MTL",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 141,
-   "SJS": 25
+   "SJS": 25,
+   "WPG": 165
   },
   "decadesActive": [
    "1980s",
@@ -95515,6 +96054,9 @@
    ],
    "SJS": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 357,
@@ -95773,11 +96315,13 @@
   "position": "L",
   "teams": [
    "PHI",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "PHI": 65,
-   "STL": 163
+   "STL": 163,
+   "WPG": 127
   },
   "decadesActive": [
    "1980s",
@@ -95789,6 +96333,10 @@
    ],
    "STL": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 355,
@@ -96193,11 +96741,13 @@
   "teams": [
    "LAK",
    "PIT",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "LAK": 165,
    "PIT": 11,
+   "WPG": 73,
    "WSH": 102
   },
   "decadesActive": [
@@ -96210,6 +96760,9 @@
    ],
    "PIT": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ],
    "WSH": [
     "1980s"
@@ -98234,11 +98787,13 @@
   "position": "G",
   "teams": [
    "BOS",
-   "DET"
+   "DET",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 2,
-   "DET": 264
+   "DET": 264,
+   "WPG": 74
   },
   "decadesActive": [
    "1980s",
@@ -98250,6 +98805,9 @@
    ],
    "DET": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -99596,11 +100154,13 @@
   "position": "D",
   "teams": [
    "PIT",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "PIT": 89,
-   "STL": 97
+   "STL": 97,
+   "WPG": 102
   },
   "decadesActive": [
    "1970s",
@@ -99612,6 +100172,9 @@
    ],
    "STL": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -102250,12 +102813,14 @@
   "teams": [
    "ANA",
    "BOS",
-   "DAL"
+   "DAL",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 151,
    "BOS": 148,
-   "DAL": 1
+   "DAL": 1,
+   "WPG": 21
   },
   "decadesActive": [
    "1980s",
@@ -102271,6 +102836,9 @@
    ],
    "DAL": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 321,
@@ -102732,13 +103300,15 @@
    "CHI",
    "NJD",
    "NYI",
-   "TBL"
+   "TBL",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 2,
    "NJD": 12,
    "NYI": 10,
-   "TBL": 174
+   "TBL": 174,
+   "WPG": 120
   },
   "decadesActive": [
    "1980s",
@@ -102755,6 +103325,10 @@
     "1990s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ]
   },
@@ -103032,12 +103606,14 @@
   "teams": [
    "BOS",
    "EDM",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 14,
    "EDM": 14,
-   "VAN": 279
+   "VAN": 279,
+   "WPG": 10
   },
   "decadesActive": [
    "1980s"
@@ -103050,6 +103626,9 @@
     "1980s"
    ],
    "VAN": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -104533,10 +105112,12 @@
   "name": "Rick Dudley",
   "position": "L",
   "teams": [
-   "BUF"
+   "BUF",
+   "WPG"
   ],
   "teamGP": {
-   "BUF": 279
+   "BUF": 279,
+   "WPG": 30
   },
   "decadesActive": [
    "1970s",
@@ -104545,6 +105126,9 @@
   "teamDecades": {
    "BUF": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -105533,11 +106117,13 @@
   "position": "D",
   "teams": [
    "LAK",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "LAK": 51,
-   "TOR": 26
+   "TOR": 26,
+   "WPG": 19
   },
   "decadesActive": [
    "1970s",
@@ -105549,6 +106135,9 @@
    ],
    "TOR": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 303,
@@ -106063,11 +106652,13 @@
   "position": "D",
   "teams": [
    "DET",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "DET": 35,
-   "TOR": 173
+   "TOR": 173,
+   "WPG": 92
   },
   "decadesActive": [
    "1970s",
@@ -106078,6 +106669,10 @@
     "1980s"
    ],
    "TOR": [
+    "1980s"
+   ],
+   "WPG": [
+    "1970s",
     "1980s"
    ]
   },
@@ -106213,15 +106808,20 @@
   "name": "Gord Smith",
   "position": "D",
   "teams": [
+   "WPG",
    "WSH"
   ],
   "teamGP": {
+   "WPG": 13,
    "WSH": 286
   },
   "decadesActive": [
    "1970s"
   ],
   "teamDecades": {
+   "WPG": [
+    "1970s"
+   ],
    "WSH": [
     "1970s"
    ]
@@ -106986,10 +107586,12 @@
   "name": "Jimmy Mann",
   "position": "R",
   "teams": [
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
-   "PIT": 9
+   "PIT": 9,
+   "WPG": 202
   },
   "decadesActive": [
    "1970s",
@@ -106997,6 +107599,10 @@
   ],
   "teamDecades": {
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
+    "1970s",
     "1980s"
    ]
   },
@@ -107190,11 +107796,13 @@
   "teams": [
    "PHI",
    "SJS",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "PHI": 35,
    "SJS": 63,
+   "WPG": 193,
    "WSH": 1
   },
   "decadesActive": [
@@ -107206,6 +107814,10 @@
     "1990s"
    ],
    "SJS": [
+    "1990s"
+   ],
+   "WPG": [
+    "1980s",
     "1990s"
    ],
    "WSH": [
@@ -108231,10 +108843,12 @@
   "name": "Mark Kumpel",
   "position": "R",
   "teams": [
-   "DET"
+   "DET",
+   "WPG"
   ],
   "teamGP": {
-   "DET": 18
+   "DET": 18,
+   "WPG": 141
   },
   "decadesActive": [
    "1980s",
@@ -108243,6 +108857,10 @@
   "teamDecades": {
    "DET": [
     "1980s"
+   ],
+   "WPG": [
+    "1980s",
+    "1990s"
    ]
   },
   "careerGP": 288,
@@ -108257,12 +108875,14 @@
   "teams": [
    "BOS",
    "NYI",
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 52,
    "NYI": 213,
-   "NYR": 4
+   "NYR": 4,
+   "WPG": 9
   },
   "decadesActive": [
    "1980s"
@@ -108275,6 +108895,9 @@
     "1980s"
    ],
    "NYR": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -108654,6 +109277,7 @@
    "COL",
    "PIT",
    "TBL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
@@ -108661,6 +109285,7 @@
    "COL": 2,
    "PIT": 1,
    "TBL": 55,
+   "WPG": 61,
    "WSH": 69
   },
   "decadesActive": [
@@ -108678,6 +109303,9 @@
     "1980s"
    ],
    "TBL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ],
    "WSH": [
@@ -108965,11 +109593,13 @@
   "position": "G",
   "teams": [
    "MTL",
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 51,
-   "NYR": 103
+   "NYR": 103,
+   "WPG": 130
   },
   "decadesActive": [
    "1970s",
@@ -108981,6 +109611,9 @@
    ],
    "NYR": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -109257,10 +109890,12 @@
   "name": "Al Cameron",
   "position": "D",
   "teams": [
-   "DET"
+   "DET",
+   "WPG"
   ],
   "teamGP": {
-   "DET": 190
+   "DET": 190,
+   "WPG": 92
   },
   "decadesActive": [
    "1970s",
@@ -109269,6 +109904,10 @@
   "teamDecades": {
    "DET": [
     "1970s"
+   ],
+   "WPG": [
+    "1970s",
+    "1980s"
    ]
   },
   "careerGP": 282,
@@ -109616,11 +110255,13 @@
   "position": "D",
   "teams": [
    "DET",
-   "LAK"
+   "LAK",
+   "WPG"
   ],
   "teamGP": {
    "DET": 80,
-   "LAK": 130
+   "LAK": 130,
+   "WPG": 70
   },
   "decadesActive": [
    "1970s",
@@ -109632,6 +110273,9 @@
    ],
    "LAK": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 280,
@@ -110272,10 +110916,12 @@
   "name": "Peter Marsh",
   "position": "R",
   "teams": [
-   "CHI"
+   "CHI",
+   "WPG"
   ],
   "teamGP": {
-   "CHI": 197
+   "CHI": 197,
+   "WPG": 81
   },
   "decadesActive": [
    "1970s",
@@ -110283,6 +110929,10 @@
   ],
   "teamDecades": {
    "CHI": [
+    "1980s"
+   ],
+   "WPG": [
+    "1970s",
     "1980s"
    ]
   },
@@ -110658,12 +111308,20 @@
   "id": 700003159,
   "name": "Bengt Lundholm",
   "position": "L",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 275
+  },
   "decadesActive": [
    "1980s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s"
+   ]
+  },
   "careerGP": 275,
   "teamCount": 1,
   "iconic": false,
@@ -111837,13 +112495,21 @@
   "id": 700001299,
   "name": "Jordy Douglas",
   "position": "L",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 24
+  },
   "decadesActive": [
    "1970s",
    "1980s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s"
+   ]
+  },
   "careerGP": 268,
   "teamCount": 3,
   "iconic": false,
@@ -113529,12 +114195,20 @@
   "id": 700005039,
   "name": "Don Spring",
   "position": "D",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 259
+  },
   "decadesActive": [
    "1980s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s"
+   ]
+  },
   "careerGP": 259,
   "teamCount": 1,
   "iconic": false,
@@ -114348,10 +115022,12 @@
   "name": "Norm Dupont",
   "position": "L",
   "teams": [
-   "MTL"
+   "MTL",
+   "WPG"
   ],
   "teamGP": {
-   "MTL": 35
+   "MTL": 35,
+   "WPG": 181
   },
   "decadesActive": [
    "1970s",
@@ -114360,6 +115036,9 @@
   "teamDecades": {
    "MTL": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 256,
@@ -115458,10 +116137,12 @@
   "name": "Kris Manery",
   "position": "C",
   "teams": [
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
-   "VAN": 21
+   "VAN": 21,
+   "WPG": 63
   },
   "decadesActive": [
    "1970s",
@@ -115470,6 +116151,10 @@
   "teamDecades": {
    "VAN": [
     "1970s"
+   ],
+   "WPG": [
+    "1970s",
+    "1980s"
    ]
   },
   "careerGP": 250,
@@ -115672,12 +116357,14 @@
   "teams": [
    "BOS",
    "DET",
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 64,
    "DET": 12,
-   "NYR": 141
+   "NYR": 141,
+   "WPG": 32
   },
   "decadesActive": [
    "1970s",
@@ -115692,6 +116379,9 @@
    ],
    "NYR": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -117469,10 +118159,12 @@
   "name": "Brad Berry",
   "position": "D",
   "teams": [
-   "DAL"
+   "DAL",
+   "WPG"
   ],
   "teamGP": {
-   "DAL": 8
+   "DAL": 8,
+   "WPG": 163
   },
   "decadesActive": [
    "1980s",
@@ -117481,6 +118173,9 @@
   "teamDecades": {
    "DAL": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 241,
@@ -118979,13 +119674,15 @@
    "CHI",
    "DET",
    "NJD",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 66,
    "DET": 3,
    "NJD": 140,
-   "PIT": 3
+   "PIT": 3,
+   "WPG": 22
   },
   "decadesActive": [
    "1980s",
@@ -119002,6 +119699,9 @@
     "1980s"
    ],
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -120646,16 +121346,21 @@
   "name": "Wayne Dillon",
   "position": "C",
   "teams": [
-   "NYR"
+   "NYR",
+   "WPG"
   ],
   "teamGP": {
-   "NYR": 216
+   "NYR": 216,
+   "WPG": 13
   },
   "decadesActive": [
    "1970s"
   ],
   "teamDecades": {
    "NYR": [
+    "1970s"
+   ],
+   "WPG": [
     "1970s"
    ]
   },
@@ -120870,10 +121575,12 @@
   "name": "Michel Dion",
   "position": "G",
   "teams": [
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
-   "PIT": 151
+   "PIT": 151,
+   "WPG": 14
   },
   "decadesActive": [
    "1970s",
@@ -120881,6 +121588,9 @@
   ],
   "teamDecades": {
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -122780,10 +123490,12 @@
   "name": "Ed Staniowski",
   "position": "G",
   "teams": [
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
-   "STL": 137
+   "STL": 137,
+   "WPG": 63
   },
   "decadesActive": [
    "1970s",
@@ -122792,6 +123504,9 @@
   "teamDecades": {
    "STL": [
     "1970s",
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -123554,12 +124269,14 @@
   "teams": [
    "BOS",
    "LAK",
-   "OTT"
+   "OTT",
+   "WPG"
   ],
   "teamGP": {
    "BOS": 8,
    "LAK": 56,
-   "OTT": 26
+   "OTT": 26,
+   "WPG": 120
   },
   "decadesActive": [
    "1980s",
@@ -123574,6 +124291,9 @@
    ],
    "OTT": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 215,
@@ -124045,16 +124765,21 @@
   "name": "Wade Campbell",
   "position": "D",
   "teams": [
-   "BOS"
+   "BOS",
+   "WPG"
   ],
   "teamGP": {
-   "BOS": 28
+   "BOS": 28,
+   "WPG": 185
   },
   "decadesActive": [
    "1980s"
   ],
   "teamDecades": {
    "BOS": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -124415,6 +125140,7 @@
    "MTL",
    "PIT",
    "STL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
@@ -124422,6 +125148,7 @@
    "MTL": 2,
    "PIT": 25,
    "STL": 113,
+   "WPG": 18,
    "WSH": 50
   },
   "decadesActive": [
@@ -124439,6 +125166,9 @@
     "1980s"
    ],
    "STL": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ],
    "WSH": [
@@ -124600,11 +125330,13 @@
   "position": "D",
   "teams": [
    "LAK",
-   "NYI"
+   "NYI",
+   "WPG"
   ],
   "teamGP": {
    "LAK": 60,
-   "NYI": 120
+   "NYI": 120,
+   "WPG": 31
   },
   "decadesActive": [
    "1980s",
@@ -124616,6 +125348,9 @@
    ],
    "NYI": [
     "1980s",
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -125912,12 +126647,14 @@
   "teams": [
    "ANA",
    "EDM",
-   "PHI"
+   "PHI",
+   "WPG"
   ],
   "teamGP": {
    "ANA": 51,
    "EDM": 8,
-   "PHI": 139
+   "PHI": 139,
+   "WPG": 7
   },
   "decadesActive": [
    "1990s",
@@ -125932,6 +126669,9 @@
     "2000s"
    ],
    "PHI": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -126589,12 +127329,20 @@
   "id": 700000479,
   "name": "Luciano Borsato",
   "position": "C",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 203
+  },
   "decadesActive": [
    "1990s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1990s"
+   ]
+  },
   "careerGP": 203,
   "teamCount": 1,
   "iconic": false,
@@ -129889,10 +130637,12 @@
   "name": "Tim Trimper",
   "position": "L",
   "teams": [
-   "CHI"
+   "CHI",
+   "WPG"
   ],
   "teamGP": {
-   "CHI": 30
+   "CHI": 30,
+   "WPG": 140
   },
   "decadesActive": [
    "1970s",
@@ -129901,6 +130651,9 @@
   "teamDecades": {
    "CHI": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 190,
@@ -131417,11 +132170,13 @@
   "position": "D",
   "teams": [
    "STL",
-   "VAN"
+   "VAN",
+   "WPG"
   ],
   "teamGP": {
    "STL": 61,
-   "VAN": 9
+   "VAN": 9,
+   "WPG": 62
   },
   "decadesActive": [
    "1980s"
@@ -131431,6 +132186,9 @@
     "1980s"
    ],
    "VAN": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -131647,11 +132405,13 @@
   "position": "R",
   "teams": [
    "BUF",
-   "MTL"
+   "MTL",
+   "WPG"
   ],
   "teamGP": {
    "BUF": 18,
-   "MTL": 147
+   "MTL": 147,
+   "WPG": 17
   },
   "decadesActive": [
    "1990s"
@@ -131661,6 +132421,9 @@
     "1990s"
    ],
    "MTL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -133812,11 +134575,13 @@
   "position": "R",
   "teams": [
    "DET",
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
    "DET": 61,
-   "STL": 34
+   "STL": 34,
+   "WPG": 45
   },
   "decadesActive": [
    "1970s",
@@ -133828,6 +134593,9 @@
    ],
    "STL": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 173,
@@ -137410,10 +138178,12 @@
   "position": "L",
   "teams": [
    "BOS",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "BOS": 115,
+   "WPG": 2,
    "WSH": 41
   },
   "decadesActive": [
@@ -137423,6 +138193,9 @@
   "teamDecades": {
    "BOS": [
     "1980s"
+   ],
+   "WPG": [
+    "1990s"
    ],
    "WSH": [
     "1980s",
@@ -137497,10 +138270,12 @@
   "position": "D",
   "teams": [
    "NYR",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "NYR": 10,
+   "WPG": 15,
    "WSH": 120
   },
   "decadesActive": [
@@ -137512,12 +138287,15 @@
     "1990s",
     "2000s"
    ],
+   "WPG": [
+    "1990s"
+   ],
    "WSH": [
     "2000s"
    ]
   },
   "careerGP": 158,
-  "teamCount": 3,
+  "teamCount": 4,
   "iconic": false,
   "active": false
  },
@@ -138545,11 +139323,13 @@
   "position": "L",
   "teams": [
    "FLA",
-   "OTT"
+   "OTT",
+   "WPG"
   ],
   "teamGP": {
    "FLA": 21,
-   "OTT": 43
+   "OTT": 43,
+   "WPG": 91
   },
   "decadesActive": [
    "1990s"
@@ -138559,6 +139339,9 @@
     "1990s"
    ],
    "OTT": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -139073,11 +139856,13 @@
   "position": "L",
   "teams": [
    "MTL",
-   "NJD"
+   "NJD",
+   "WPG"
   ],
   "teamGP": {
    "MTL": 43,
-   "NJD": 25
+   "NJD": 25,
+   "WPG": 86
   },
   "decadesActive": [
    "1980s"
@@ -139087,6 +139872,9 @@
     "1980s"
    ],
    "NJD": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -140857,11 +141645,13 @@
   "position": "L",
   "teams": [
    "LAK",
-   "PHI"
+   "PHI",
+   "WPG"
   ],
   "teamGP": {
    "LAK": 53,
-   "PHI": 48
+   "PHI": 48,
+   "WPG": 47
   },
   "decadesActive": [
    "1980s",
@@ -140873,6 +141663,9 @@
    ],
    "PHI": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 148,
@@ -143462,15 +144255,20 @@
   "name": "Bill Riley",
   "position": "R",
   "teams": [
+   "WPG",
    "WSH"
   ],
   "teamGP": {
+   "WPG": 14,
    "WSH": 125
   },
   "decadesActive": [
    "1970s"
   ],
   "teamDecades": {
+   "WPG": [
+    "1970s"
+   ],
    "WSH": [
     "1970s"
    ]
@@ -143733,10 +144531,12 @@
   "name": "Mike Veisor",
   "position": "G",
   "teams": [
-   "CHI"
+   "CHI",
+   "WPG"
   ],
   "teamGP": {
-   "CHI": 62
+   "CHI": 62,
+   "WPG": 8
   },
   "decadesActive": [
    "1970s",
@@ -143745,6 +144545,9 @@
   "teamDecades": {
    "CHI": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 139,
@@ -145287,10 +146090,12 @@
   "name": "Dave Hoyda",
   "position": "L",
   "teams": [
-   "PHI"
+   "PHI",
+   "WPG"
   ],
   "teamGP": {
-   "PHI": 108
+   "PHI": 108,
+   "WPG": 24
   },
   "decadesActive": [
    "1970s",
@@ -145299,6 +146104,10 @@
   "teamDecades": {
    "PHI": [
     "1970s"
+   ],
+   "WPG": [
+    "1970s",
+    "1980s"
    ]
   },
   "careerGP": 132,
@@ -145313,11 +146122,13 @@
   "teams": [
    "OTT",
    "STL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "OTT": 22,
    "STL": 92,
+   "WPG": 15,
    "WSH": 3
   },
   "decadesActive": [
@@ -145328,6 +146139,9 @@
     "1990s"
    ],
    "STL": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ],
    "WSH": [
@@ -145450,11 +146264,13 @@
   "position": "G",
   "teams": [
    "EDM",
-   "FLA"
+   "FLA",
+   "WPG"
   ],
   "teamGP": {
    "EDM": 13,
-   "FLA": 2
+   "FLA": 2,
+   "WPG": 117
   },
   "decadesActive": [
    "1980s",
@@ -145467,6 +146283,9 @@
    ],
    "FLA": [
     "1990s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 132,
@@ -145592,11 +146411,13 @@
   "position": "D",
   "teams": [
    "DET",
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
    "DET": 1,
-   "SJS": 1
+   "SJS": 1,
+   "WPG": 130
   },
   "decadesActive": [
    "1990s"
@@ -145606,6 +146427,9 @@
     "1990s"
    ],
    "SJS": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -146671,11 +147495,13 @@
   "teams": [
    "CGY",
    "PHI",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "CGY": 4,
    "PHI": 71,
+   "WPG": 29,
    "WSH": 25
   },
   "decadesActive": [
@@ -146686,6 +147512,9 @@
     "1990s"
    ],
    "PHI": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ],
    "WSH": [
@@ -147103,13 +147932,22 @@
   "id": 700001358,
   "name": "Iain Duncan",
   "position": "L",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 127
+  },
   "decadesActive": [
    "1980s",
    "1990s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s",
+    "1990s"
+   ]
+  },
   "careerGP": 127,
   "teamCount": 1,
   "iconic": false,
@@ -147535,11 +148373,13 @@
   "position": "L",
   "teams": [
    "CHI",
-   "PIT"
+   "PIT",
+   "WPG"
   ],
   "teamGP": {
    "CHI": 69,
-   "PIT": 12
+   "PIT": 12,
+   "WPG": 45
   },
   "decadesActive": [
    "1970s",
@@ -147551,6 +148391,9 @@
     "1980s"
    ],
    "PIT": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ]
   },
@@ -147709,13 +148552,22 @@
   "id": 700005173,
   "name": "Peter Sullivan",
   "position": "C",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 126
+  },
   "decadesActive": [
    "1970s",
    "1980s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1970s",
+    "1980s"
+   ]
+  },
   "careerGP": 126,
   "teamCount": 1,
   "iconic": false,
@@ -148549,11 +149401,13 @@
   "position": "R",
   "teams": [
    "FLA",
-   "OTT"
+   "OTT",
+   "WPG"
   ],
   "teamGP": {
    "FLA": 29,
-   "OTT": 84
+   "OTT": 84,
+   "WPG": 9
   },
   "decadesActive": [
    "1990s"
@@ -148564,10 +149418,13 @@
    ],
    "OTT": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 124,
-  "teamCount": 3,
+  "teamCount": 4,
   "iconic": false,
   "active": false
  },
@@ -149093,10 +149950,12 @@
   "name": "Brent Thompson",
   "position": "D",
   "teams": [
-   "LAK"
+   "LAK",
+   "WPG"
   ],
   "teamGP": {
-   "LAK": 81
+   "LAK": 81,
+   "WPG": 39
   },
   "decadesActive": [
    "1990s"
@@ -149104,10 +149963,13 @@
   "teamDecades": {
    "LAK": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 121,
-  "teamCount": 2,
+  "teamCount": 3,
   "iconic": false,
   "active": false
  },
@@ -149448,7 +150310,8 @@
    "NYI",
    "NYR",
    "STL",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "CGY": 20,
@@ -149456,7 +150319,8 @@
    "NYI": 2,
    "NYR": 3,
    "STL": 16,
-   "TOR": 18
+   "TOR": 18,
+   "WPG": 16
   },
   "decadesActive": [
    "1990s",
@@ -149480,10 +150344,13 @@
    ],
    "TOR": [
     "1990s"
+   ],
+   "WPG": [
+    "1990s"
    ]
   },
   "careerGP": 120,
-  "teamCount": 7,
+  "teamCount": 8,
   "iconic": false,
   "active": false
  },
@@ -150477,11 +151344,13 @@
   "position": "L",
   "teams": [
    "LAK",
-   "TOR"
+   "TOR",
+   "WPG"
   ],
   "teamGP": {
    "LAK": 9,
-   "TOR": 45
+   "TOR": 45,
+   "WPG": 62
   },
   "decadesActive": [
    "1970s"
@@ -150491,6 +151360,9 @@
     "1970s"
    ],
    "TOR": [
+    "1970s"
+   ],
+   "WPG": [
     "1970s"
    ]
   },
@@ -150557,10 +151429,12 @@
   "name": "Don Barber",
   "position": "L",
   "teams": [
-   "SJS"
+   "SJS",
+   "WPG"
   ],
   "teamGP": {
-   "SJS": 12
+   "SJS": 12,
+   "WPG": 27
   },
   "decadesActive": [
    "1980s",
@@ -150568,6 +151442,9 @@
   ],
   "teamDecades": {
    "SJS": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },
@@ -151249,12 +152126,20 @@
   "id": 700002419,
   "name": "Hannu Jarvenpaa",
   "position": "R",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 114
+  },
   "decadesActive": [
    "1980s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s"
+   ]
+  },
   "careerGP": 114,
   "teamCount": 1,
   "iconic": false,
@@ -151880,10 +152765,12 @@
   "position": "C",
   "teams": [
    "MTL",
+   "WPG",
    "WSH"
   ],
   "teamGP": {
    "MTL": 85,
+   "WPG": 17,
    "WSH": 10
   },
   "decadesActive": [
@@ -151892,6 +152779,9 @@
   ],
   "teamDecades": {
    "MTL": [
+    "1980s"
+   ],
+   "WPG": [
     "1980s"
    ],
    "WSH": [
@@ -152188,10 +153078,12 @@
   "name": "Danny Geoffrion",
   "position": "R",
   "teams": [
-   "MTL"
+   "MTL",
+   "WPG"
   ],
   "teamGP": {
-   "MTL": 32
+   "MTL": 32,
+   "WPG": 79
   },
   "decadesActive": [
    "1970s",
@@ -152200,6 +153092,9 @@
   "teamDecades": {
    "MTL": [
     "1970s"
+   ],
+   "WPG": [
+    "1980s"
    ]
   },
   "careerGP": 111,
@@ -153300,13 +154195,21 @@
   "id": 700002998,
   "name": "Barry Legge",
   "position": "D",
-  "teams": [],
-  "teamGP": {},
+  "teams": [
+   "WPG"
+  ],
+  "teamGP": {
+   "WPG": 76
+  },
   "decadesActive": [
    "1970s",
    "1980s"
   ],
-  "teamDecades": {},
+  "teamDecades": {
+   "WPG": [
+    "1980s"
+   ]
+  },
   "careerGP": 107,
   "teamCount": 2,
   "iconic": false,
@@ -153565,9 +154468,11 @@
   "name": "Rob Murray",
   "position": "C",
   "teams": [
+   "WPG",
    "WSH"
   ],
   "teamGP": {
+   "WPG": 36,
    "WSH": 58
   },
   "decadesActive": [
@@ -153575,13 +154480,16 @@
    "1990s"
   ],
   "teamDecades": {
+   "WPG": [
+    "1990s"
+   ],
    "WSH": [
     "1980s",
     "1990s"
    ]
   },
   "careerGP": 107,
-  "teamCount": 2,
+  "teamCount": 3,
   "iconic": false,
   "active": false
  },
@@ -154742,10 +155650,12 @@
   "name": "Craig Norwich",
   "position": "D",
   "teams": [
-   "STL"
+   "STL",
+   "WPG"
   ],
   "teamGP": {
-   "STL": 23
+   "STL": 23,
+   "WPG": 70
   },
   "decadesActive": [
    "1970s",
@@ -154754,6 +155664,9 @@
   "teamDecades": {
    "STL": [
     "1980s"
+   ],
+   "WPG": [
+    "1970s"
    ]
   },
   "careerGP": 104,
@@ -155741,16 +156654,21 @@
   "name": "Russell Romaniuk",
   "position": "L",
   "teams": [
-   "PHI"
+   "PHI",
+   "WPG"
   ],
   "teamGP": {
-   "PHI": 17
+   "PHI": 17,
+   "WPG": 85
   },
   "decadesActive": [
    "1990s"
   ],
   "teamDecades": {
    "PHI": [
+    "1990s"
+   ],
+   "WPG": [
     "1990s"
    ]
   },

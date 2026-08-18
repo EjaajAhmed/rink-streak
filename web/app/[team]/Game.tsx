@@ -59,6 +59,7 @@ export default function Game({ teamCode }: { teamCode: string }) {
         teamCode={teamCode}
         teamName={teamName}
         teamShort={teamShort}
+        note={team.note}
         lang={lang}
         onLang={canFrench ? chooseLang : undefined}
       />
@@ -132,6 +133,7 @@ function Header({
   teamCode,
   teamName,
   teamShort,
+  note,
   lang,
   onLang,
 }: {
@@ -139,6 +141,7 @@ function Header({
   teamCode: string;
   teamName: string;
   teamShort: string;
+  note?: string;
   lang: Lang;
   onLang?: (l: Lang) => void;
 }) {
@@ -159,6 +162,11 @@ function Header({
       <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-ink-soft">
         {t.didThey(teamShort)}
       </p>
+      {note && (
+        <p className="mx-auto mt-3 max-w-md rounded-full border border-team/25 bg-team/5 px-3 py-1.5 text-[0.72rem] font-medium leading-snug text-ink-soft">
+          {note}
+        </p>
+      )}
       {onLang && <LangToggle lang={lang} onChange={onLang} />}
     </header>
   );

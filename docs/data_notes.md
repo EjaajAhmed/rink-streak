@@ -22,18 +22,28 @@ city/name. This drives `teams` and `teamGP` (the answer). It is implemented by
 - Any code that is already one of the 32 current NHL codes → itself.
 - Databank same-city spelling variants → the current code:
   `AND→ANA, CAL→CGY, CBS→CBJ, FLO→FLA, NAS→NSH, VEG→VGK, WAS→WSH`.
+- **Winnipeg is the one deliberate exception** — `WIN→WPG`. The original Winnipeg
+  Jets (1979–96) are NHL-officially the Coyotes lineage, not today's Jets (who
+  began as the Atlanta Thrashers). But for this game "the Jets" means **anyone who
+  played in Winnipeg**, so the original Jets are credited to `WPG` on purpose.
+  This is the only place `canon()` crosses an official franchise boundary; it does
+  so because Winnipeg fans count both eras as their team. The Jets page carries a
+  short note saying so (`note` on the WPG entry in `web/app/lib/teams.ts`).
 - **Everything else → not a current team** (excluded from `teams`/`teamGP`):
   relocations and renames-to-a-new-city and defunct clubs. Examples:
-  - `ATL` Atlanta Thrashers (→ Winnipeg) — a Thrashers-only player is NOT a Jet.
+  - `ATL` Atlanta Thrashers (→ Winnipeg) — a Thrashers-only player is NOT a Jet
+    (this stays excluded even though the original Jets, `WIN`, are credited).
   - `QUE` Quebec Nordiques (→ Colorado) — NOT an Avalanche.
   - `HAR`/`HFD` Hartford Whalers (→ Carolina) — NOT a Hurricane.
   - `ATF` Atlanta Flames, `MNS` Minnesota North Stars, `COR`/`CLR` Colorado
     Rockies, `KCS` Kansas City Scouts, `CLE` Cleveland Barons, `OAK`/`CGS`
     California Seals, plus 1920s–40s defunct clubs (Maroons, Wanderers,
     Americans, Pirates, Quakers, Eagles, Tigers, original Senators…).
-  - `WIN` (original Jets), `PHO`/`PHX` (Phoenix), `ARI` (Arizona Coyotes) — the
-    Coyotes lineage relocated to Utah, so none credit `UTA`. Utah Mammoth (`UTA`)
-    is genuinely brand-new (2024), so its pool is legitimately thin.
+  - `PHO`/`PHX` (Phoenix), `ARI` (Arizona Coyotes) — the Coyotes lineage
+    relocated to Utah, so none credit `UTA`. Utah Mammoth (`UTA`) is genuinely
+    brand-new (2024), so its pool is legitimately thin. (The original Jets, `WIN`,
+    were also part of this lineage but are credited to `WPG` — see the Winnipeg
+    exception above.)
   - Pre-current-name eras of Original-Six teams (Toronto Arenas/St. Pats
     `TOA`/`TRS`, Detroit Cougars/Falcons `DTC`/`DTF`) are also excluded — this
     keeps the Toronto page consistent with the live Leafs Legend v1 (TOR = 1927+).
@@ -43,11 +53,14 @@ so those players remain eligible for the hardcore "No" pool.
 
 ### `teamCount` = distinct franchises, not raw codes
 The same club appears under several codes: a stable team across the 2010→2011
-cutover (Databank `CAL` + modern `CGY`), and the Coyotes under three
-(`PHO`/`PHX`/`ARI`). `franchise_key()` collapses these so a Coyotes-only career
-isn't counted as three teams. Genuine relocations to a new city stay distinct
+cutover (Databank `CAL` + modern `CGY`), and the Coyotes under two (`PHO`/`PHX`,
+plus `ARI`). `franchise_key()` collapses these so a Coyotes-only career isn't
+counted as multiple teams. Genuine relocations to a new city stay distinct
 (Thrashers vs Jets), matching how fans count. Effect verified: Keith Yandle
-`teamCount` 6 → 4 (Coyotes + Panthers + Rangers + Flyers).
+`teamCount` 6 → 4 (Coyotes + Panthers + Rangers + Flyers). Note the original
+Jets (`WIN`) fold to the `WPG` franchise here (via `canon()`), not the Coyotes —
+so a Winnipeg-then-Phoenix career (e.g. Teppo Numminen) counts Jets and Coyotes
+as two distinct franchises.
 
 ## Dataset fields
 See CLAUDE.md for the entry shape. All counts are NHL regular-season games.

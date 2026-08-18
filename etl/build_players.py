@@ -66,11 +66,18 @@ CURRENT_CODES = {
     "WPG", "WSH",
 }
 
-# Databank uses its own abbreviations. These are the same continuous franchise
-# under its current identity, just spelled differently -> fold them to the
-# current code. Every OTHER historical code (relocations / renames to a new
+# Databank uses its own abbreviations. Most of these are the same continuous
+# franchise under its current identity, just spelled differently -> fold them to
+# the current code. Every OTHER historical code (relocations / renames to a new
 # city / defunct clubs, incl. the modern ARI/PHX which relocated to Utah) is not
 # in CURRENT_CODES and therefore resolves to None automatically.
+#
+# WIN is the one deliberate exception to "strict current identity". The ORIGINAL
+# Winnipeg Jets (1979-96) are, NHL-officially, the Coyotes lineage -- a different
+# franchise from today's Jets, who were born as the Atlanta Thrashers. But for
+# THIS game "the Jets" means anyone who played in Winnipeg, so we credit the
+# original Jets to WPG on purpose (Winnipeg fans count both eras as their team).
+# The Thrashers (ATL) stay excluded: a Thrashers-only player is NOT a Jet.
 CANON = {
     "AND": "ANA",  # Anaheim Ducks (Databank's post-2006-rebrand code)
     "CAL": "CGY",  # Calgary Flames
@@ -79,6 +86,7 @@ CANON = {
     "NAS": "NSH",  # Nashville Predators
     "VEG": "VGK",  # Vegas Golden Knights
     "WAS": "WSH",  # Washington Capitals
+    "WIN": "WPG",  # ORIGINAL Winnipeg Jets -> today's Jets (deliberate; see above)
 }
 
 
@@ -93,11 +101,12 @@ def canon(code):
 # `teamCount` = how well-travelled a player is (drives hardcore). It must count
 # distinct FRANCHISES, not raw spellings: the same club shows up under multiple
 # codes — a stable team across the 2010->2011 cutover (Databank CAL + modern CGY)
-# and the Coyotes under three (Databank PHO, modern PHX, then ARI). Collapse
-# those so a Coyotes-only career isn't counted as three teams. Genuine
-# relocations to a new city (Thrashers vs Jets, Whalers vs Hurricanes) stay
-# distinct — fans count those separately.
-RELOC = {"PHO": "PHX", "ARI": "PHX", "WIN": "PHX"}  # Jets/Coyotes/Arizona lineage
+# and the Coyotes under two (Databank PHO, then modern PHX/ARI). Collapse those
+# so a Coyotes-only career isn't counted as multiple teams. Genuine relocations
+# to a new city (Thrashers vs Jets, Whalers vs Hurricanes) stay distinct — fans
+# count those separately. (The original Jets, WIN, are folded to WPG by canon()
+# above, so a played-in-Winnipeg stint counts as the Jets franchise here too.)
+RELOC = {"PHO": "PHX", "ARI": "PHX"}  # Coyotes/Arizona lineage (pre-Utah)
 
 
 def franchise_key(code):
@@ -481,6 +490,9 @@ def report(entries, ambiguous, missed_modern):
         ("Phil Kessel", "PIT", True), ("Phil Kessel", "VGK", True),
         ("Ilya Kovalchuk", "NJD", True), ("Ilya Kovalchuk", "WPG", False),
         ("Joe Sakic", "COL", True), ("Joe Sakic", "MTL", False),
+        # Winnipeg = anyone who played in Winnipeg: original Jets credit WPG,
+        # Thrashers-only players do not (Kovalchuk above stays WPG=False).
+        ("Teemu Selanne", "WPG", True), ("Dale Hawerchuk", "WPG", True),
     ]
     ok = True
     for name, code, want in checks:
