@@ -21,7 +21,7 @@ export type Strings = {
   modeLabel: (m: Mode) => string;
   casualSub: string;
   hardcoreSub: (secs: number) => string;
-  poolLine: (n: number, modeLabel: string) => string;
+  poolLine: (n: number, team: string, modeLabel: string) => string;
   dropPuck: string;
   laceAgain: string;
   emptyPool: string;
@@ -70,7 +70,7 @@ const EN: Strings = {
   modeLabel: (m) => (m === "hardcore" ? "hardcore" : "casual"),
   casualSub: "no clock · any recognizable player",
   hardcoreSub: (secs) => `${secs}s clock · only the tricky ones`,
-  poolLine: (n, m) => `${n} players in the ${m} pool`,
+  poolLine: (n, team, m) => `${n} ${team} in the ${m} pool`,
   dropPuck: "Drop the puck",
   laceAgain: "Lace up again",
   emptyPool: "No players match this era in hardcore. Try another era or casual mode.",
@@ -133,7 +133,7 @@ const FR: Strings = {
   modeLabel: (m) => (m === "hardcore" ? "difficile" : "facile"),
   casualSub: "sans chrono · tout joueur connu",
   hardcoreSub: (secs) => `chrono ${secs}s · seulement les pièges`,
-  poolLine: (n, m) => `${n} joueurs dans le bassin ${m}`,
+  poolLine: (n, team, m) => `${n} ${team} dans le bassin ${m}`,
   dropPuck: "Lancer la rondelle",
   laceAgain: "On relace les patins",
   emptyPool:

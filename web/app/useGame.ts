@@ -5,6 +5,7 @@ import {
   buildEras,
   buildPool,
   isCorrect,
+  playedForTeam,
   type Era,
   type Mode,
   type Player,
@@ -66,6 +67,13 @@ export function useGame(teamCode: string) {
   const pool = useMemo(
     () => buildPool(players, teamCode, mode, era ? era.decades : null),
     [players, teamCode, mode, era],
+  );
+  // How many players in the pool actually played for THIS team (the "Yes" side).
+  // That's the team-meaningful count to show — the full pool is mostly era-valid
+  // "No" players, which is why every team's pool total looks about the same size.
+  const teamPoolCount = useMemo(
+    () => pool.filter((p) => playedForTeam(p, teamCode)).length,
+    [pool, teamCode],
   );
   const bestForCurrent = best[bestKey(teamCode, mode, eraId)] ?? 0;
 
@@ -244,6 +252,7 @@ export function useGame(teamCode: string) {
     eraId,
     eras,
     pool,
+    teamPoolCount,
     current,
     streak,
     best,
