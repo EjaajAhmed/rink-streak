@@ -102,7 +102,7 @@ export default function Game({ teamCode }: { teamCode: string }) {
                   onDismiss={g.dismissImport}
                 />
               )}
-              <StartPanel t={t} g={g} teamShort={teamShort} />
+              <StartPanel t={t} g={g} />
             </>
           )}
 
@@ -229,15 +229,7 @@ function Tile({ label, value }: { label: string; value: number }) {
 }
 
 /* ------------------------------------------------------------- start/over */
-function StartPanel({
-  t,
-  g,
-  teamShort,
-}: {
-  t: Strings;
-  g: ReturnType<typeof useGame>;
-  teamShort: string;
-}) {
+function StartPanel({ t, g }: { t: Strings; g: ReturnType<typeof useGame> }) {
   const empty = g.pool.length === 0;
   return (
     <div className="text-center">
@@ -287,7 +279,7 @@ function StartPanel({
       </div>
 
       <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-ink-soft">
-        {t.poolLine(g.teamPoolCount, teamShort, t.modeLabel(g.mode))}
+        {t.poolLine(g.pool.length, t.modeLabel(g.mode))}
       </p>
 
       <button

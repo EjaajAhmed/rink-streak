@@ -149,6 +149,19 @@ def decades_of(years):
     return sorted({decade_label(y) for y in years}, key=lambda d: int(d[:-1]))
 
 
+def to_ranges(years):
+    """Compress a set of season-start years into sorted inclusive [start, end]
+    ranges, so a franchise with a gap (the Jets: 1979-95, then 2011-) is stored
+    as two ranges rather than one span that wrongly covers the Atlanta years."""
+    ranges = []
+    for y in sorted(years):
+        if ranges and y == ranges[-1][1] + 1:
+            ranges[-1][1] = y
+        else:
+            ranges.append([y, y])
+    return ranges
+
+
 def fetch_json(url, retries=3):
     req = urllib.request.Request(url, headers={"User-Agent": "rink-streak-etl/0.1"})
     for attempt in range(retries):
@@ -446,12 +459,30 @@ def build():
             "teamCount": len({franchise_key(c) for c in a["clubs"]}),
             "iconic": iconic,
             "active": bool(a["seasons"]) and max(a["seasons"]) == latest_season,
+            # Career span (season-start years). Lets the game decide "was this
+            # player active while the team actually existed?" at season rather
+            # than decade granularity — so a 1970s player who retired before the
+            # Jets' lone 1979-80 season isn't offered as a Jets "No".
+            "firstSeason": min(a["seasons"]),
+            "lastSeason": max(a["seasons"]),
         })
     entries.sort(key=lambda e: (-e["careerGP"], e["name"]))
+
+    # Per-team active seasons (when the franchise actually iced a team, under its
+    # current identity), compressed to ranges. Derived from ALL players (not just
+    # the >=100 GP pool) so no season is missed. Drives the season-accurate "No"
+    # filter on the web side. WPG naturally gets two ranges (the Atlanta gap).
+    team_seasons = {}
+    for a in people.values():
+        for c, yrs in a["teamSeasons"].items():
+            team_seasons.setdefault(c, set()).update(yrs)
+    team_ranges = {c: to_ranges(team_seasons.get(c, set())) for c in sorted(CURRENT_CODES)}
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w") as f:
         json.dump(entries, f, ensure_ascii=False, indent=1)
+    with open(os.path.join(os.path.dirname(OUT_PATH), "team_seasons.json"), "w") as f:
+        json.dump(team_ranges, f, ensure_ascii=False, indent=1)
 
     return report(entries, ambiguous, missed_modern)
 

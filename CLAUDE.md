@@ -116,9 +116,16 @@ historical isn't a current code, so it resolves to "not a current team."
   "careerGP": 800,
   "teamCount": 3,
   "iconic": false,
-  "active": false
+  "active": false,
+  "firstSeason": 2013,
+  "lastSeason": 2024
 }
 ```
+A companion file `web/public/team_seasons.json` maps each current team code to
+the seasons it actually iced a team (under its current identity), as sorted
+inclusive `[start, end]` ranges — e.g. `"WPG": [[1979, 1995], [2011, 2025]]`
+(the Atlanta gap is a real gap; other teams split at 2004 for the lost lockout
+season). It drives the season-accurate "No" filter (see below).
 Field notes (all counts are NHL regular-season games; playoff-only stints not
 counted — negligible):
 - `teams` — current-identity team codes the player actually played a game for.
@@ -133,6 +140,11 @@ counted — negligible):
 - `iconic` — instantly recognizable (Hall of Fame, or ≥1000 pts / ≥1200 GP).
 - `active` — played in the dataset's most recent season (used by casual mode so
   current players stay eligible even below the games threshold).
+- `firstSeason` / `lastSeason` — career span (season-start years). Used with
+  `team_seasons.json` so a "No" player is only offered if their career overlapped
+  a season the team actually existed — season-accurate, not decade-approximate
+  (so a 1970s player who retired before the Jets' lone 1979-80 season, or a
+  1997–2010 player during the Jets' Atlanta gap, is not a Jets "No").
 
 Player pool: recognizable players (`careerGP` ≥ ~100); casual mode tightens this
 further (below).
@@ -174,6 +186,7 @@ tune without rebuilding.
 /web/app/[team]/            per-team route (page.tsx = SSR shell, Game.tsx = client game)
 /web/app/lib/               config, teams, rng, sequence, players (pure logic)
 /web/public/players.json    generated dataset (committed)
+/web/public/team_seasons.json  generated per-team active-season ranges (committed)
 /docs                       data schema, cutover + relocation decisions
 /.github/workflows          monthly dataset auto-refresh
 ```

@@ -19,7 +19,14 @@ export type Player = {
   teamCount: number; // distinct clubs incl. relocated/defunct (well-travelled metric)
   iconic: boolean;
   active: boolean; // played in the dataset's most recent season
+  firstSeason: number; // career span (season-start years), for season-accurate
+  lastSeason: number; //  "was this player around while the team existed?" checks
 };
+
+// A franchise's active seasons under its current identity, as sorted inclusive
+// [start, end] ranges (a gap → multiple ranges, e.g. the Jets 1979-95 + 2011-).
+// Loaded from web/public/team_seasons.json (built by the ETL).
+export type TeamSeasons = [number, number][];
 
 export type Mode = "casual" | "hardcore";
 
@@ -69,22 +76,51 @@ export function isCasualEligible(p: Player): boolean {
   return p.careerGP >= CASUAL_MIN_GP || p.active;
 }
 
+/** Did this player's career overlap a season the team actually played, within
+ *  the selected decades? Season-accurate, so a player who was active in a decade
+ *  but not while the team existed in it (a 1970s player who retired before the
+ *  Jets' 1979-80 debut; a 1997-2010 player during the Jets' Atlanta gap) is not
+ *  offered as a "No". Falls back to nothing here — see buildPool for the
+ *  decade-only fallback when team seasons aren't loaded. */
+function activeWhileTeamExisted(
+  p: Player,
+  teamSeasons: TeamSeasons,
+  decades: string[] | null,
+): boolean {
+  for (const [ts, te] of teamSeasons) {
+    const lo = Math.max(ts, p.firstSeason);
+    const hi = Math.min(te, p.lastSeason);
+    if (lo > hi) continue; // career doesn't overlap this team stint at all
+    if (!decades) return true; // no decade filter — any overlap qualifies
+    for (let y = lo; y <= hi; y++) {
+      if (decades.includes(`${Math.floor(y / 10) * 10}s`)) return true;
+    }
+  }
+  return false;
+}
+
 export function buildPool(
   players: Player[],
   teamCode: string,
   mode: Mode,
   decades: string[] | null,
+  teamSeasons?: TeamSeasons,
 ): Player[] {
   return players.filter((p) => {
     // Era filter. When a decade is selected we require the *right* kind of
-    // in-decade involvement, so there are no confusing entries:
+    // in-era involvement, so there are no confusing entries:
     //  - a player who played for this team must have played for it IN the
     //    selected decade (not just been active elsewhere then);
-    //  - a player who never played for this team must merely be active in it.
+    //  - a player who never played for this team must have been an NHL player
+    //    while the team actually existed within the selected window
+    //    (season-accurate when team seasons are supplied; decade-approximate
+    //    otherwise, e.g. in tests without the team_seasons dataset).
     if (decades) {
       if (playedForTeam(p, teamCode)) {
         const td = p.teamDecades[teamCode] ?? [];
         if (!td.some((d) => decades.includes(d))) return false;
+      } else if (teamSeasons) {
+        if (!activeWhileTeamExisted(p, teamSeasons, decades)) return false;
       } else if (!p.decadesActive.some((d) => decades.includes(d))) {
         return false;
       }

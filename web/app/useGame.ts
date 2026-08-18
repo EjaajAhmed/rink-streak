@@ -5,10 +5,10 @@ import {
   buildEras,
   buildPool,
   isCorrect,
-  playedForTeam,
   type Era,
   type Mode,
   type Player,
+  type TeamSeasons,
 } from "./lib/players";
 import { makeSequencer, type Sequencer } from "./lib/sequence";
 import { TEAMS } from "./lib/teams";
@@ -42,6 +42,7 @@ const storeKey = (k: string) => `${PREFIX}${k}`;
 export function useGame(teamCode: string) {
   const { user } = useAuth();
   const [players, setPlayers] = useState<Player[]>([]);
+  const [teamSeasons, setTeamSeasons] = useState<Record<string, TeamSeasons>>({});
   const [status, setStatus] = useState<Status>("loading");
   const [mode, setMode] = useState<Mode>("casual");
   const [eraId, setEraId] = useState<string>("all"); // "all" is the default
@@ -65,15 +66,15 @@ export function useGame(teamCode: string) {
     [eras, eraId],
   );
   const pool = useMemo(
-    () => buildPool(players, teamCode, mode, era ? era.decades : null),
-    [players, teamCode, mode, era],
-  );
-  // How many players in the pool actually played for THIS team (the "Yes" side).
-  // That's the team-meaningful count to show — the full pool is mostly era-valid
-  // "No" players, which is why every team's pool total looks about the same size.
-  const teamPoolCount = useMemo(
-    () => pool.filter((p) => playedForTeam(p, teamCode)).length,
-    [pool, teamCode],
+    () =>
+      buildPool(
+        players,
+        teamCode,
+        mode,
+        era ? era.decades : null,
+        teamSeasons[teamCode],
+      ),
+    [players, teamCode, mode, era, teamSeasons],
   );
   const bestForCurrent = best[bestKey(teamCode, mode, eraId)] ?? 0;
 
@@ -91,6 +92,12 @@ export function useGame(teamCode: string) {
         setStatus("ready");
       })
       .catch(() => alive && setStatus("error"));
+    // Per-team active seasons, for the season-accurate "No" filter. Non-fatal:
+    // if it fails, buildPool falls back to decade-approximate matching.
+    fetch("/team_seasons.json")
+      .then((r) => (r.ok ? r.json() : {}))
+      .then((data: Record<string, TeamSeasons>) => alive && setTeamSeasons(data))
+      .catch(() => {});
     return () => {
       alive = false;
     };
@@ -252,7 +259,6 @@ export function useGame(teamCode: string) {
     eraId,
     eras,
     pool,
-    teamPoolCount,
     current,
     streak,
     best,
