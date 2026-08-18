@@ -126,7 +126,11 @@ export function teamDecadeList(players: Player[], teamCode: string): string[] {
  *    into the "1970s" pill instead.
  *  - Later teams just get a pill per decade.
  */
-export function buildEras(players: Player[], teamCode: string): Era[] {
+export function buildEras(
+  players: Player[],
+  teamCode: string,
+  debut?: number,
+): Era[] {
   const decades = teamDecadeList(players, teamCode); // ascending
   const year = (d: string) => parseInt(d, 10);
   // "All eras" means every era THIS team existed for — not literally all of NHL
@@ -145,25 +149,44 @@ export function buildEras(players: Player[], teamCode: string): Era[] {
     for (const d of decades) if (year(d) >= PRE_EXPANSION_BEFORE) {
       eras.push({ id: d, label: d, decades: [d] });
     }
-    return eras;
-  }
-
-  const has60 = decades.includes("1960s");
-  const has70 = decades.includes("1970s");
-  // A 1960s-born team without a 1970s pill is not a real case today, but keep
-  // the decade reachable if it ever happens.
-  if (has60 && !has70) {
-    eras.push({ id: "1960s", label: "1960s", decades: ["1960s"] });
-  }
-  for (const d of decades) {
-    if (d === "1960s") continue; // folded into the 1970s pill below
-    if (d === "1970s") {
-      eras.push({ id: "1970s", label: "1970s", decades: has60 ? ["1960s", "1970s"] : ["1970s"] });
-    } else if (year(d) >= PRE_EXPANSION_BEFORE) {
-      eras.push({ id: d, label: d, decades: [d] });
+  } else {
+    const has60 = decades.includes("1960s");
+    const has70 = decades.includes("1970s");
+    // A 1960s-born team without a 1970s pill is not a real case today, but keep
+    // the decade reachable if it ever happens.
+    if (has60 && !has70) {
+      eras.push({ id: "1960s", label: "1960s", decades: ["1960s"] });
+    }
+    for (const d of decades) {
+      if (d === "1960s") continue; // folded into the 1970s pill below
+      if (d === "1970s") {
+        eras.push({ id: "1970s", label: "1970s", decades: has60 ? ["1960s", "1970s"] : ["1970s"] });
+      } else if (year(d) >= PRE_EXPANSION_BEFORE) {
+        eras.push({ id: d, label: d, decades: [d] });
+      }
     }
   }
-  return eras;
+
+  return foldLoneDebut(eras, decades, debut);
+}
+
+/**
+ * A team that entered the NHL in the final season of a decade (`debut % 10 === 9`
+ * — the 1979-80 WHA merger: Edmonton and the original Jets) has an earliest
+ * "decade" that is really a single trailing season. Rather than show a lonely
+ * e.g. "1970s" pill for one season, fold that season forward into the next
+ * decade's pill. It still counts under "All eras" (whose span is unchanged).
+ * Mirrors the 1960s→1970s fold used for 1967-expansion teams above.
+ */
+function foldLoneDebut(eras: Era[], decades: string[], debut?: number): Era[] {
+  if (debut == null || debut % 10 !== 9 || decades.length < 2) return eras;
+  const lone = decades[0]; // e.g. "1970s"
+  const next = decades[1]; // e.g. "1980s"
+  if (parseInt(lone, 10) !== debut - (debut % 10)) return eras; // lone = debut's decade
+  const nextPill = eras.find((e) => e.id === next);
+  if (!nextPill || !nextPill.decades) return eras; // no standalone next pill — leave as-is
+  nextPill.decades = [lone, ...nextPill.decades];
+  return eras.filter((e) => e.id !== lone); // drop the lone one-season pill
 }
 
 /* --------------------------------------------------------------- display */
